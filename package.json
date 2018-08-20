@@ -1,0 +1,37 @@
+{
+  "name": "develop-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "author": "crack <test@text.com> (http://yourblog.com/)",
+  "license": "ISC",
+  "_moduleAliases": {
+    "@root": ".",
+    "@client": "client",
+    "@cert": "cert",
+    "@server": "server",
+    "@sockets": "sockets"
+  },
+  "dependencies": {
+    "@types/koa": "^2.0.46",
+    "@types/koa-bodyparser": "^5.0.1",
+    "@types/koa-favicon": "^2.0.19",
+    "@types/koa-router": "^7.0.31",
+    "@types/koa-static": "^4.0.0",
+    "@types/module-alias": "^2.0.0",
+    "@types/socket.io": "^1.4.37",
+    "@types/spdy": "^3.4.4",
+    "@types/uuid": "^3.4.3",
+    "koa": "^2.5.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-favicon": "^2.0.1",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "module-alias": "^2.1.0",
+    "socket.io": "^2.1.1",
+    "spdy": "^3.4.7",
+    "sudo-prompt": "^8.2.0",
+    "uuid": "^3.3.2"
+  }
+}
