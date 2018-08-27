@@ -12,8 +12,8 @@ const app = new koa();
 const { io } = app;
 
 app
-    .use(serve(path.join('../client/examples')))
-    .use(favicon(path.resolve('./static/favicon.ico')))
+    .use(serve(path.join('@client/client/examples')))
+    .use(favicon(path.resolve('@server/static/favicon.ico')))
     .use(bodyParser())
     .use(matcher())
     .use(router.routes())
