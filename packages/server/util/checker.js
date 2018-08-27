@@ -1,20 +1,27 @@
-// 暂时不动
+// todo 重构解析规则
+// domain 需要解析的域名名单 https 代理配置生成 证书存储
+
+// tabs 项目切换
+
+
 const url = require("url");
 const { getConfig } = require("./configurator");
 const { talentuiReplacer, proxyDecision, isRemoteFileRequest } = require("../constant/index");
-function searchInPass(desciptions) {
+// whiteList 白名单文件跳过列表
+function searchInWhiteList(desciptions) {
     let config = getConfig();
     let { requestPath } = desciptions;
-    let matched = config.pass.find(item => {
+    let matched = config.whiteList.find(item => {
         if (!item.enabled) return false;
-        return requestPath.indexOf(item.reg) !== -1;
+        return requestPath.indexOf(item.regular) !== -1;
     });
     if (matched) {
         desciptions.decision = proxyDecision.pass;
         desciptions.identifier = matched.name;
-        desciptions.responseTarget = `${desciptions.requestProtocol}://${
-            config.target.ip
-            }`;
+        // desciptions.responseTarget = `${desciptions.requestProtocol}://${
+        //     config.target.ip
+        //     }`;
+        desciptions.responseTarget = `${desciptions.requestProtocol}://60.28.207.67`;
         desciptions.isRemoteFileRequest = isRemoteFileRequest;
         desciptions.responsePath = requestPath;
         desciptions.changeOrigin = false;
@@ -23,19 +30,24 @@ function searchInPass(desciptions) {
     return false;
 }
 
-function searchInDirect(desciptions) {
-    let { direct = [] } = getConfig();
+// custom 自定义单个链接  
+// 比如把文件指向本地目录 
+// 或者指向一个端口下的文件 
+// 类似Charles 文件代理
+
+function searchInCustom(desciptions) {
+    let { custom = [] } = getConfig();
     let { requestPath } = desciptions;
-    let matched = direct.find(item => {
+    let matched = custom.find(item => {
         if (!item.enabled) return false;
-        return requestPath.indexOf(item.reg) !== -1;
+        return requestPath.indexOf(item.regular) !== -1;
     });
     if (matched) {
         desciptions.isRemoteFileRequest =
             matched.target.indexOf("://") === -1
                 ? !isRemoteFileRequest
                 : isRemoteFileRequest;
-        desciptions.decision = proxyDecision.direct;
+        desciptions.decision = proxyDecision.custom;
         desciptions.identifier = matched.name;
         if (desciptions.isRemoteFileRequest === !isRemoteFileRequest) {
             desciptions.responseTarget = "Local File System";
@@ -49,15 +61,16 @@ function searchInDirect(desciptions) {
     }
     return false;
 }
+// general  通用规则 dll之类类 带分组
 
-function searchInSpecial(desciptions) {
+function searchInGeneral(desciptions) {
     let { requestPath, requestFrom } = desciptions;
-    let { special } = getConfig();
-    let matched = special.find(item => {
-        let { reg, referer, enabled } = item;
+    let { general } = getConfig();
+    let matched = general.find(item => {
+        let { regular, referer, enabled } = item;
         if (!enabled) return false;
         referer = referer.trim();
-        let regx = new RegExp(reg);
+        let regx = new RegExp(regular);
         let regMatched = regx.test(requestPath);
         if (requestFrom && referer) {
             return regMatched && requestFrom.indexOf(referer) !== -1;
@@ -65,12 +78,12 @@ function searchInSpecial(desciptions) {
         return regMatched;
     });
     if (matched) {
-        let { reg, port = 3000, name } = matched;
+        let { regular, port = 3000, name } = matched;
         desciptions.isRemoteFileRequest = isRemoteFileRequest;
-        desciptions.decision = proxyDecision.special;
+        desciptions.decision = proxyDecision.general;
         desciptions.identifier = name;
         desciptions.responseTarget = `http://localhost:${port}`;
-        desciptions.responsePath = new RegExp(reg)
+        desciptions.responsePath = new RegExp(regular)
             .exec(requestPath)
             .slice(1)
             .join("");
@@ -81,11 +94,11 @@ function searchInSpecial(desciptions) {
 
 function searchInTalentUI(desciptions) {
     let { requestPath } = desciptions;
-    let { talentui: { template, projects } } = getConfig();
+    let { talentui: { regular, projects } } = getConfig();
     let matched = projects.find(project => {
         let { name, enabled } = project;
         if (!enabled) return false;
-        let regx = new RegExp(template.replace(talentuiReplacer, name));
+        let regx = new RegExp(regular.replace(talentuiReplacer, name));
         return regx.test(requestPath);
     });
 
@@ -94,8 +107,8 @@ function searchInTalentUI(desciptions) {
         desciptions.decision = proxyDecision.talentui;
         desciptions.identifier = matched.name;
         desciptions.responseTarget = `http://localhost:${matched.port}`;
-        const newTemplate = template.replace(talentuiReplacer, matched.name)
-        desciptions.responsePath = new RegExp(newTemplate)
+        const newRegular = regular.replace(talentuiReplacer, matched.name)
+        desciptions.responsePath = new RegExp(newRegular)
             .exec(requestPath)
             .slice(1)
             .join("");
@@ -105,13 +118,13 @@ function searchInTalentUI(desciptions) {
 }
 
 
-function searchInTalentExtend(desciptions) {
+function searchInTalentExtension(desciptions) {
     let { requestPath } = desciptions;
-    let { extend: { template, projects } } = getConfig();
+    let { extension: { regular, projects } } = getConfig();
     let matched = projects.find(project => {
         let { name, enabled } = project;
         if (!enabled) return false;
-        let regx = new RegExp(template.replace(talentuiReplacer, name));
+        let regx = new RegExp(regular.replace(talentuiReplacer, name));
         return regx.test(requestPath);
     });
     if (matched) {
@@ -119,8 +132,8 @@ function searchInTalentExtend(desciptions) {
         desciptions.decision = proxyDecision.talentui;
         desciptions.identifier = matched.name;
         desciptions.responseTarget = `http://localhost:${matched.port}`;
-        const newTemplate = template.replace(talentuiReplacer, matched.name)
-        desciptions.responsePath = new RegExp(newTemplate)
+        const newRegular = regular.replace(talentuiReplacer, matched.name)
+        desciptions.responsePath = new RegExp(newRegular)
             .exec(requestPath)
             .slice(1)
             .join("")
@@ -142,21 +155,23 @@ module.exports = function findMatchConfig(ctx) {
     };
     // 依次匹配，是否请求是否匹配到“跳过”规则
     if (
-        searchInPass(desciptions) ||
-        searchInDirect(desciptions) ||
-        searchInSpecial(desciptions) ||
-        searchInTalentUI(desciptions) ||
-        searchInTalentExtend(desciptions)
-
+        false
+        // searchInWhiteList(desciptions) ||
+        // searchInCustom(desciptions) ||
+        // searchInGeneral(desciptions) ||
+        // searchInTalentUI(desciptions) ||
+        // searchInTalentExtension(desciptions)
     ) {
     } else {
         desciptions.isRemoteFileRequest = isRemoteFileRequest
         desciptions.changeOrigin = false;
         desciptions.decision = proxyDecision.notMatched;
-        desciptions.responseTarget = `${desciptions.requestProtocol}://${
-            getConfig().target.ip
-            }`;
+        // desciptions.responseTarget = `${desciptions.requestProtocol}://${
+        //     getConfig().target.ip
+        //     }`;
+        desciptions.responseTarget = `${desciptions.requestProtocol}://60.28.207.67`;
         desciptions.responsePath = desciptions.requestPath;
+
     }
     return desciptions;
 };

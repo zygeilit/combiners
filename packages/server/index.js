@@ -2,9 +2,10 @@ const path = require('path')
 const koa = require('./util/index')
 const favicon = require('koa-favicon');
 const bodyParser = require('koa-bodyparser');
-const matcher = require('./middleware/matcher')
 const serve = require('koa-static');
 const router = require('./router');
+const matcher = require('@server/middleware/matcher')
+const mount = require('koa-mount');
 // const logger = require('koa-logger');
 const proxyStatus = require('./util/proxy-status')
 
@@ -12,12 +13,26 @@ const app = new koa();
 const { io } = app;
 
 app
-    .use(serve(path.join('@client/client/examples')))
-    .use(favicon(path.resolve('@server/static/favicon.ico')))
+    .use(favicon(path.resolve(__dirname,'./static/favicon.ico')))
     .use(bodyParser())
-    .use(matcher())
     .use(router.routes())
     .use(router.allowedMethods())
+    .use(mount('/', serve(path.resolve(__dirname,'./static'))))
+    .use(matcher())
+    // .use(logger())
+
+    
+
+
+
+
+
+
+
+
+
+
+
 //   自定义日志
 //   .use(logger((str, args) => {
 //       console.log(str,args)
@@ -41,3 +56,5 @@ io.on("connect", function (socket) {
 
 app.listens(443)
 app.listen(80)
+
+

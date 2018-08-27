@@ -2,9 +2,7 @@
 const fs = require("fs");
 const httpProxy = require("http-proxy");
 const send = require('koa-send')
-
 const proxy = httpProxy.createProxyServer({});
-
 const checker = require("../util/checker");
 const proxyStatus = require('../util/proxy-status')
 
@@ -23,9 +21,9 @@ module.exports = () => (
                 ctx.body = `你指定的本地文件不存在`;
             }
         } else {
-            // todo 优化代理方式
+            // // todo 优化代理方式
             ctx.respond = false
-            // 替换规则清洗后的 url
+            // // 替换规则清洗后的 url
             ctx.url = result.responsePath
             // 文件转发线上
             proxy.web(req, res, {

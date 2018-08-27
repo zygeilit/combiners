@@ -2,7 +2,10 @@ const Router = require('koa-router');
 const router = new Router();
 
 router
+    // .use('*', matcher())
+    // .get('*', matcher())
     .get('/config', (ctx, next) => {
+        // console.log(2222220)
     })
     .post('/tabs', (ctx, next) => {
     })
