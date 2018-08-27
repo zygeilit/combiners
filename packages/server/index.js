@@ -1,54 +1,43 @@
-const fs = require('fs')
 const path = require('path')
 const koa = require('./util/index')
 const favicon = require('koa-favicon');
 const bodyParser = require('koa-bodyparser');
-const createLog = require('./util/createLog')
+const matcher = require('./middleware/matcher')
 const serve = require('koa-static');
-const Router = require('koa-router');
-const app = new koa();
-const router = new Router();
+const router = require('./router');
+// const logger = require('koa-logger');
+const proxyStatus = require('./util/proxy-status')
 
-// const proxy = require("./modules/proxy");
-// const api = require("./modules/api");
-// app.use("/api", api);
-// app.use(proxy);
+const app = new koa();
+const { io } = app;
 
 app
-  .use(bodyParser())
-  .use(router.routes())
-  .use(router.allowedMethods())
-  // .use(favicon(resolve('./public/favicon.ico')))
-  .use(serve(path.join( '../client/examples')))
-  .listen(80)
-  .listens(443)
+    .use(serve(path.join('../client/examples')))
+    .use(favicon(path.resolve('./static/favicon.ico')))
+    .use(bodyParser())
+    .use(matcher())
+    .use(router.routes())
+    .use(router.allowedMethods())
+//   自定义日志
+//   .use(logger((str, args) => {
+//       console.log(str,args)
+//     // redirect koa logger to other output pipe
+//     // default is process.stdout(by console.log function)
+//   }))
 
-// .io.on("connection", function(socket) {
-//   socket.join('logger');
-//   socket.emit(
-//       "log",
-//       createLog({
-//           decision: "建立链接",
-//           type: "connect"
-//       })
-//   );
-// });
+// sockets 链接状态 / 项目启动检测 / 证书添加删除 之类
+io.on("connect", function (socket) {
+    socket.emit("update proxy status",proxyStatus({status: "建立链接",type: "connect"}));
+});
 
-// // x-response-time
-// app.use(async function (ctx, next) {
-//   const start = new Date();
-//   await next();
-//   const ms = new Date() - start;
-//   ctx.set('X-Response-Time', `${ms}ms`);
-// });
-// // logger
-// app.use(async function (ctx, next) {
-//   const start = new Date();
-//   await next();
-//   const ms = new Date() - start;
-//   console.log(`${ctx.method} ${ctx.url} - ${ms}`);
-// });
-// router.post('*', (ctx, next) => {
-//       ctx.response.body = '2222'
-//     console.log(ctx.request.body,ctx.params)
-// })
+io.on("connect", function (socket) {
+    socket.emit("update proxy status",proxyStatus({status: "断开链接",type: "disconnect"}));
+});
+
+io.on("connect", function (socket) {
+    socket.emit("update proxy status",proxyStatus({status: "重新建立链接",type: "disconnect"}));
+});
+
+
+app.listens(443)
+app.listen(80)
