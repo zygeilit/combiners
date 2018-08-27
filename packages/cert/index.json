@@ -1,0 +1,10 @@
+{
+    "beisen.com": {
+        "key": "beisen.com.key",
+        "cert": "beisen.com.pem"
+    },
+    "tita.com": {
+        "key": "tita.com.key",
+        "cert": "tita.com.pem"
+    }
+}

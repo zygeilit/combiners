@@ -1,3 +1,3 @@
+import React from 'react';
 
-import Tab from '../components/tab'
-export default Tab
+export default () => <div>222222</div>

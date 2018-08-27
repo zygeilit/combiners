@@ -1,3 +1,3 @@
-// pps love talent
-import Tab from '../components/tab'
-export default Tab
+import React from 'react';
+
+export default () => <div>222222</div>

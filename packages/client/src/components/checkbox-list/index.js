@@ -3,77 +3,105 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import Switch from '@material-ui/core/Switch';
+import ServerIcon from '@material-ui/icons/OndemandVideoTwoTone';
+import BluetoothIcon from '@material-ui/icons/Bluetooth';
+import Input from '@material-ui/core/Input';
+import DeleteIcon from '@material-ui/icons/DeleteTwoTone';
+import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import CommentIcon from '@material-ui/icons/Comment';
-
+import AddIcon from '@material-ui/icons/Add';
 const styles = theme => ({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
+    button: {
+        marginLeft: 30,
+        marginTop: 10
+    },
+    root: {
+        backgroundColor: theme.palette.background.paper,
+    },
 });
 
-class CheckboxList extends React.Component {
-  state = {
-    checked: [0],
-  };
+class SwitchListSecondary extends React.Component {
+    state = {
+        checked: ['wifi'],
+    };
 
-  handleToggle = value => () => {
-    const { checked } = this.state;
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
+    handleToggle = value => () => {
+        const { checked } = this.state;
+        const currentIndex = checked.indexOf(value);
+        const newChecked = [...checked];
 
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
+        if (currentIndex === -1) {
+            newChecked.push(value);
+        } else {
+            newChecked.splice(currentIndex, 1);
+        }
+        this.setState({
+            checked: newChecked,
+        });
+    };
+
+    render() {
+        const { classes } = this.props;
+
+        return (
+
+
+            <div className={classes.root}>
+                <Button variant="fab" mini color="secondary" aria-label="Add" className={classes.button}>
+                    <AddIcon />
+                </Button>
+                <List disablePadding >
+                    <ListItem>
+                        <ListItemIcon>
+                            <ServerIcon />
+                        </ListItemIcon>
+
+                        <ListItemIcon>
+                            <Switch
+                                onChange={this.handleToggle('bluetooth')}
+                                checked={this.state.checked.indexOf('bluetooth') !== -1}
+                            />
+                        </ListItemIcon>
+
+                        <ListItemIcon>
+                            <Input
+                                placeholder="项目名称"
+                                // className={classes.input}
+                                inputProps={{
+                                    'aria-label': 'Description',
+                                }}
+                            />
+                        </ListItemIcon>
+                        <ListItemIcon>
+                            <Input
+                                placeholder="端口号"
+                                // className={classes.input}
+                                inputProps={{
+                                    'aria-label': 'Description',
+                                }}
+                            />
+                        </ListItemIcon>
+                        <ListItemIcon>
+                            <IconButton className={classes.button} aria-label="Delete">
+                                <DeleteIcon />
+                            </IconButton>
+                        </ListItemIcon>
+                    </ListItem>
+
+                </List>
+            </div>
+        );
     }
-
-    this.setState({
-      checked: newChecked,
-    });
-  };
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <div className={classes.root}>
-        <List>
-          {[0, 1, 2, 3].map(value => (
-            <ListItem
-              key={value}
-              role={undefined}
-              dense
-              button
-              onClick={this.handleToggle(value)}
-              className={classes.listItem}
-            >
-              <Checkbox
-                checked={this.state.checked.indexOf(value) !== -1}
-                tabIndex={-1}
-                disableRipple
-              />
-              <ListItemText primary={`Line item ${value + 1}`} />
-              <ListItemSecondaryAction>
-                <IconButton aria-label="Comments">
-                  <CommentIcon />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    );
-  }
 }
 
-CheckboxList.propTypes = {
-  classes: PropTypes.object.isRequired,
+SwitchListSecondary.propTypes = {
+    classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CheckboxList);
+export default withStyles(styles)(SwitchListSecondary);
+

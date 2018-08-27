@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 exports.OtherListItems = exports.MainListItems = exports.ListRender = undefined;
 
@@ -60,122 +60,122 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var mainList = [{
-  id: 1,
-  primary: '所有项目',
-  icon: _PersonalVideoTwoTone2.default
+    id: 0,
+    primary: '所有项目',
+    icon: _PersonalVideoTwoTone2.default
 }, {
-  id: 2,
-  primary: '通用规则',
-  icon: _WbSunnyTwoTone2.default
+    id: 1,
+    primary: '通用规则',
+    icon: _WbSunnyTwoTone2.default
 }, {
-  id: 3,
-  primary: '白名单',
-  icon: _SecurityTwoTone2.default
+    id: 2,
+    primary: '白名单',
+    icon: _SecurityTwoTone2.default
 }, {
-  id: 4,
-  primary: '自定义',
-  icon: _PaletteTwoTone2.default
+    id: 3,
+    primary: '自定义',
+    icon: _PaletteTwoTone2.default
 }, {
-  id: 5,
-  primary: '域名设置',
-  icon: _PublicTwoTone2.default
+    id: 4,
+    primary: '域名设置',
+    icon: _PublicTwoTone2.default
 }];
 var otherList = [{
-  id: 6,
-  primary: '日志',
-  icon: _WebAssetTwoTone2.default
+    id: 5,
+    primary: '日志',
+    icon: _WebAssetTwoTone2.default
 }, {
-  id: 7,
-  primary: '关于',
-  icon: _InfoTwoTone2.default
+    id: 6,
+    primary: '关于',
+    icon: _InfoTwoTone2.default
 }];
 
 var ListRender = exports.ListRender = function (_PureComponent) {
-  _inherits(ListRender, _PureComponent);
+    _inherits(ListRender, _PureComponent);
 
-  function ListRender() {
-    var _ref;
+    function ListRender() {
+        var _ref;
 
-    var _temp, _this, _ret;
+        var _temp, _this, _ret;
 
-    _classCallCheck(this, ListRender);
+        _classCallCheck(this, ListRender);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ListRender.__proto__ || Object.getPrototypeOf(ListRender)).call.apply(_ref, [this].concat(args))), _this), _this.handleClick = function (id) {
+            return function () {
+                return _this.props.handleClick(id);
+            };
+        }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ListRender.__proto__ || Object.getPrototypeOf(ListRender)).call.apply(_ref, [this].concat(args))), _this), _this.handleClick = function (id) {
-      return function () {
-        return _this.props.handleClick(id);
-      };
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
+    _createClass(ListRender, [{
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
 
-  _createClass(ListRender, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
+            return _react2.default.createElement(
+                'div',
+                null,
+                this.props.list.map(function (key) {
+                    return _react2.default.createElement(
+                        _ListItem2.default,
+                        { onClick: _this2.handleClick(key.id), key: key.id, button: true },
+                        _react2.default.createElement(
+                            _ListItemIcon2.default,
+                            null,
+                            _react2.default.createElement(key.icon, null)
+                        ),
+                        _react2.default.createElement(_ListItemText2.default, { primary: key.primary })
+                    );
+                })
+            );
+        }
+    }]);
 
-      return _react2.default.createElement(
-        'div',
-        null,
-        this.props.list.map(function (key) {
-          return _react2.default.createElement(
-            _ListItem2.default,
-            { onClick: _this2.handleClick(key.id), key: key.id, button: true },
-            _react2.default.createElement(
-              _ListItemIcon2.default,
-              null,
-              _react2.default.createElement(key.icon, null)
-            ),
-            _react2.default.createElement(_ListItemText2.default, { primary: key.primary })
-          );
-        })
-      );
-    }
-  }]);
-
-  return ListRender;
+    return ListRender;
 }(_react.PureComponent);
 
 var MainListItems = exports.MainListItems = function (_PureComponent2) {
-  _inherits(MainListItems, _PureComponent2);
+    _inherits(MainListItems, _PureComponent2);
 
-  function MainListItems() {
-    _classCallCheck(this, MainListItems);
+    function MainListItems() {
+        _classCallCheck(this, MainListItems);
 
-    return _possibleConstructorReturn(this, (MainListItems.__proto__ || Object.getPrototypeOf(MainListItems)).apply(this, arguments));
-  }
-
-  _createClass(MainListItems, [{
-    key: 'render',
-    value: function render() {
-      var handleChangeIndex = this.props.handleChangeIndex;
-
-      return _react2.default.createElement(ListRender, { handleClick: handleChangeIndex, list: mainList });
+        return _possibleConstructorReturn(this, (MainListItems.__proto__ || Object.getPrototypeOf(MainListItems)).apply(this, arguments));
     }
-  }]);
 
-  return MainListItems;
+    _createClass(MainListItems, [{
+        key: 'render',
+        value: function render() {
+            var handleChangeIndex = this.props.handleChangeIndex;
+
+            return _react2.default.createElement(ListRender, { handleClick: handleChangeIndex, list: mainList });
+        }
+    }]);
+
+    return MainListItems;
 }(_react.PureComponent);
 
 var OtherListItems = exports.OtherListItems = function (_PureComponent3) {
-  _inherits(OtherListItems, _PureComponent3);
+    _inherits(OtherListItems, _PureComponent3);
 
-  function OtherListItems() {
-    _classCallCheck(this, OtherListItems);
+    function OtherListItems() {
+        _classCallCheck(this, OtherListItems);
 
-    return _possibleConstructorReturn(this, (OtherListItems.__proto__ || Object.getPrototypeOf(OtherListItems)).apply(this, arguments));
-  }
-
-  _createClass(OtherListItems, [{
-    key: 'render',
-    value: function render() {
-      var handleChangeIndex = this.props.handleChangeIndex;
-
-      return _react2.default.createElement(ListRender, { handleClick: handleChangeIndex, list: otherList });
+        return _possibleConstructorReturn(this, (OtherListItems.__proto__ || Object.getPrototypeOf(OtherListItems)).apply(this, arguments));
     }
-  }]);
 
-  return OtherListItems;
+    _createClass(OtherListItems, [{
+        key: 'render',
+        value: function render() {
+            var handleChangeIndex = this.props.handleChangeIndex;
+
+            return _react2.default.createElement(ListRender, { handleClick: handleChangeIndex, list: otherList });
+        }
+    }]);
+
+    return OtherListItems;
 }(_react.PureComponent);
