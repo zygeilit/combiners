@@ -21,7 +21,7 @@ module.exports = {
             "port": "3000",
             "name": "代理",
             "id": "8f0a6600-aa02-11e8-8f49-d7010357de32",
-            "reg": "规则",
+            "regular": "规则",
             "referer": "引用跳过",
             "groupId": "7a747870-aa02-11e8-8f49-d7010957de32",
             "enabled": true
@@ -45,7 +45,7 @@ module.exports = {
                 "name": "upaas-portal",
                 "port": "3000",
                 "id": "981f5410-de1c-11e7-a954-2d672289896c",
-                "enabled": false
+                "enabled": true
             }
         ]
     },
@@ -53,10 +53,10 @@ module.exports = {
         "regular": "\\/ux\\/{{project}}\\/release\\/dist\\/(?:(app)-\\w*(\\.bundle)\\.min(\\.js)|(.*\\.bundle\\.js)|(.*\\.hot-update\\.js(?:on)?)|((?:\\w+\\/)+.*))",
         "projects": [
             {
-                "name": "upaas-portal",
+                "name": "tenantbase",
                 "port": "3000",
                 "id": "981f5410-de1c-11e7-a954-2d672b49896c",
-                "enabled": false
+                "enabled": true
             }
         ]
     },

@@ -19,6 +19,7 @@ export default class AllProject {
 		return this.tabs.map(tab => tab.toJS());
 	}
 	static fromJS(array) {
+
 		const tabsStore = new TabsStore();
 		tabsStore.tabs = array.map(item => TabsModel.fromJS(tabsStore, item));
 		return tabsStore;

@@ -32,10 +32,10 @@ class Content extends React.Component {
                 <PageContainer> <Project /> </PageContainer>
                 <PageContainer> <General /> </PageContainer>
                 <PageContainer> <WhiteList /> </PageContainer>
+                <PageContainer> <Custom /> </PageContainer>
+                <PageContainer> <Domain /> </PageContainer>
                 <PageContainer> <Logger /> </PageContainer>
                 <PageContainer> <About /> </PageContainer>
-                <PageContainer> <Domain /> </PageContainer>
-                <PageContainer> <Custom /> </PageContainer>
             </Swiper>
 
         );

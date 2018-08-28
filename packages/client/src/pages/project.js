@@ -57,7 +57,7 @@ const styles = theme => ({
     },
     '&$tabSelected': {
       color: '#1890ff',
-      fontWeight: theme.typography.fontWeightMedium,
+    //   fontWeight: theme.typography.fontWeightMedium,
     },
     '&:focus': {
       color: '#40a9ff',
@@ -104,11 +104,13 @@ class CustomizedTabs extends React.Component {
             classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
             label="扩展项目"
           />
-          <Tab
+          {/* 
+            支持动态添加规则
+            <Tab
             disableRipple
             classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
             label="自定义项目"
-          />
+          /> */}
         </Tabs>
         <content className="content">
           <Swiper {...this.state}>

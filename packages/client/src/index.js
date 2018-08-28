@@ -10,10 +10,10 @@ import Divider from '@material-ui/core/Divider';
 import { MainListItems, OtherListItems } from './components/menu';
 import 'normalize.css'
 import { inject, observer } from 'mobx-react';
-import DevTools from 'mobx-react-devtools';
+// import DevTools from 'mobx-react-devtools';
 import DevelopServer from '@material-ui/icons/ImportantDevicesTwoTone';
-// immer
-// import { observer } from 'mobx-react';
+const socket = require('socket.io-client')('http://localhost');
+
 import Content from './pages'
 
 // const styles = theme => ({
@@ -58,12 +58,20 @@ const styles = theme => ({
     toolbar: theme.mixins.toolbar,
 });
 
-@inject('viewStore')
+@inject('logStore','viewStore')
 @observer
 class App extends Component {
-
+    componentDidMount() {
+        console.log(this.props)
+        const { logStore,viewStore } = this.props;
+        socket.on('update proxy status', (log) => {
+            console.log('日志状态更新')
+            logStore.addNewLog(log)
+            viewStore.subscribeServerToStore()
+        });
+    }
     render() {
-        const { classes ,viewStore} = this.props;
+        const { classes, viewStore } = this.props;
         return (<div className={classes.root}>
             <AppBar position="absolute" className={classes.appBar}>
                 <Toolbar>
@@ -93,9 +101,9 @@ class App extends Component {
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <Content value ={viewStore.activeMenu} />
+                <Content value={viewStore.activeMenu} />
             </main>
-{/* <DevTools/> */}
+            {/* <DevTools/> */}
         </div>
         );
     }

@@ -16,7 +16,7 @@ function searchInWhiteList(desciptions) {
         return requestPath.indexOf(item.regular) !== -1;
     });
     if (matched) {
-        desciptions.decision = proxyDecision.pass;
+        desciptions.status = proxyDecision.whiteList;
         desciptions.identifier = matched.name;
         // desciptions.responseTarget = `${desciptions.requestProtocol}://${
         //     config.target.ip
@@ -47,7 +47,7 @@ function searchInCustom(desciptions) {
             matched.target.indexOf("://") === -1
                 ? !isRemoteFileRequest
                 : isRemoteFileRequest;
-        desciptions.decision = proxyDecision.custom;
+        desciptions.status = proxyDecision.custom;
         desciptions.identifier = matched.name;
         if (desciptions.isRemoteFileRequest === !isRemoteFileRequest) {
             desciptions.responseTarget = "Local File System";
@@ -80,7 +80,7 @@ function searchInGeneral(desciptions) {
     if (matched) {
         let { regular, port = 3000, name } = matched;
         desciptions.isRemoteFileRequest = isRemoteFileRequest;
-        desciptions.decision = proxyDecision.general;
+        desciptions.status = proxyDecision.general;
         desciptions.identifier = name;
         desciptions.responseTarget = `http://localhost:${port}`;
         desciptions.responsePath = new RegExp(regular)
@@ -104,7 +104,7 @@ function searchInTalentUI(desciptions) {
 
     if (matched) {
         desciptions.isRemoteFileRequest = isRemoteFileRequest;
-        desciptions.decision = proxyDecision.talentui;
+        desciptions.status = proxyDecision.talentui;
         desciptions.identifier = matched.name;
         desciptions.responseTarget = `http://localhost:${matched.port}`;
         const newRegular = regular.replace(talentuiReplacer, matched.name)
@@ -129,7 +129,7 @@ function searchInTalentExtension(desciptions) {
     });
     if (matched) {
         desciptions.isRemoteFileRequest = isRemoteFileRequest;
-        desciptions.decision = proxyDecision.talentui;
+        desciptions.status = proxyDecision.extension;
         desciptions.identifier = matched.name;
         desciptions.responseTarget = `http://localhost:${matched.port}`;
         const newRegular = regular.replace(talentuiReplacer, matched.name)
@@ -155,17 +155,16 @@ module.exports = function findMatchConfig(ctx) {
     };
     // 依次匹配，是否请求是否匹配到“跳过”规则
     if (
-        false
-        // searchInWhiteList(desciptions) ||
-        // searchInCustom(desciptions) ||
-        // searchInGeneral(desciptions) ||
-        // searchInTalentUI(desciptions) ||
-        // searchInTalentExtension(desciptions)
+        searchInWhiteList(desciptions) ||
+        searchInCustom(desciptions)  ||
+        searchInGeneral(desciptions)  ||
+        searchInTalentUI(desciptions) ||
+        searchInTalentExtension(desciptions)
     ) {
     } else {
         desciptions.isRemoteFileRequest = isRemoteFileRequest
         desciptions.changeOrigin = false;
-        desciptions.decision = proxyDecision.notMatched;
+        desciptions.status = proxyDecision.notMatched;
         // desciptions.responseTarget = `${desciptions.requestProtocol}://${
         //     getConfig().target.ip
         //     }`;

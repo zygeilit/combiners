@@ -1,23 +1,37 @@
 // import io from 'socket.io-client';
-import { observable, configure, action,spy } from 'mobx';
+import { observable, configure, action,spy,reaction } from 'mobx';
 configure({
     enforceActions: true
 });
-export class ViewStore {
+export default class ViewStore {
+    // 活动菜单
     @observable activeMenu = 0;
+    // 活动tab
+    @observable activeTab = 0;
+    // 分组  obj > general(array)
+    @observable groups
+    // general array
+    @observable general
+    // 
+    @observable domain
+    @observable talentui
+    @observable extension
+    @observable whiteList
+    @observable custom
     @action changeIndex = (index) => this.activeMenu = index;
 	subscribeServerToStore() {
 		reaction(
-			() => this.toJS(),
-			activeMenu => window.fetch && fetch('/api/activeMenu', {
-				method: 'post',
-				body: JSON.stringify({ activeMenu }),
-				headers: new Headers({ 'Content-Type': 'application/json' })
-			})
+            () => this.activeMenu,
+            (activeMenu) => console.log(activeMenu)
+			// activeMenu => window.fetch && fetch('/api/activeMenu', {
+			// 	method: 'post',
+			// 	body: JSON.stringify({ activeMenu }),
+			// 	headers: new Headers({ 'Content-Type': 'application/json' })
+			// })
 		);
     }
 }
-export default new ViewStore()
+//  new ViewStore()
 
 // // getConfig
 // GET_CONFIG_FROM_SERVER: "get the config data from the sever",
@@ -27,3 +41,22 @@ export default new ViewStore()
 // CHANAGE_GROUP_NAME: 'change the name of a group',
 // DELETE_GROUP: "delete a group",
 // CHANGE_TAB: "change the tab of the page"
+
+//   class UserStore {
+//     constructor(rootStore) {
+//       this.rootStore = rootStore
+//     }
+  
+//     getTodos(user) {
+//       // 通过根 store 来访问 todoStore
+//       return this.rootStore.todoStore.todos.filter(todo => todo.author === user)
+//     }
+//   }
+  
+//   class TodoStore {
+//     @observable todos = []
+  
+//     constructor(rootStore) {
+//       this.rootStore = rootStore
+//     }
+//   }

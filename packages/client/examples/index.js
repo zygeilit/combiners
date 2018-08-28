@@ -1,32 +1,22 @@
 import React from 'react';
 import { render } from 'react-dom';
 import ReactComponentTemplate from '../src';
-import viewStore from '../src/stores'
+import RootStore from '../src/stores/root'
+
 import { Provider } from 'mobx-react';
-
-
-const stores = {
-    viewStore
-};
-
-// sockets
-// const socket = io.connect('http://localhost');
-// socket.on('connect', message => console.log('%c    Socket 连接成功    ', 'background:#2ecc71;color:#fff'));
-// socket.on('log', message => console.log(`%c   ${JSON.stringify(message)}   `, 'background:#cc712e;color:#fff'));
-
+const rootStore = new RootStore()
 function start() {
     render(
-        <Provider {...stores}>
+        <Provider {...rootStore}>
             <ReactComponentTemplate />
         </Provider>,
         document.getElementById('root'));
 }
 
-if (process.env.NODE_ENV !== 'production') {
-    const { whyDidYouUpdate } = require('why-did-you-update');
-    whyDidYouUpdate(React);
-}
-
+// if (process.env.NODE_ENV !== 'production') {
+//     const { whyDidYouUpdate } = require('why-did-you-update');
+//     whyDidYouUpdate(React);
+// }
 
 start();
 

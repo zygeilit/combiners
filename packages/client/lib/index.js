@@ -9,6 +9,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _dec, _class;
 // import PropTypes from 'prop-types';
 
+// sockets
+// const socket = io.connect('http://localhost');
+
 // immer
 // import { observer } from 'mobx-react';
 
@@ -113,7 +116,7 @@ var styles = function styles(theme) {
     };
 };
 
-var App = (_dec = (0, _mobxReact.inject)('viewStore'), _dec(_class = (0, _mobxReact.observer)(_class = function (_Component) {
+var App = (_dec = (0, _mobxReact.inject)('viewStore', 'loggerStore'), _dec(_class = (0, _mobxReact.observer)(_class = function (_Component) {
     _inherits(App, _Component);
 
     function App() {
@@ -123,6 +126,18 @@ var App = (_dec = (0, _mobxReact.inject)('viewStore'), _dec(_class = (0, _mobxRe
     }
 
     _createClass(App, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            socket.on('update proxy status', function (data) {
+                console.log(data);
+                log('状态更新' + data.status);
+                // addChatMessage(data);
+            });
+
+            // socket.on('connect', message => console.log('%c    Socket 连接成功    ', 'background:#2ecc71;color:#fff'));
+            // socket.on('log', message => console.log(`%c   ${JSON.stringify(message)}   `, 'background:#cc712e;color:#fff'));
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _props = this.props,

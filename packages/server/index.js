@@ -17,20 +17,9 @@ app
     .use(bodyParser())
     .use(router.routes())
     .use(router.allowedMethods())
-    .use(mount('/', serve(path.resolve(__dirname,'./static'))))
+    .use(mount('/', serve(path.resolve(__dirname,'../client/examples/'))))
     .use(matcher())
     // .use(logger())
-
-    
-
-
-
-
-
-
-
-
-
 
 
 //   自定义日志
@@ -45,13 +34,13 @@ io.on("connect", function (socket) {
     socket.emit("update proxy status",proxyStatus({status: "建立链接",type: "connect"}));
 });
 
-io.on("connect", function (socket) {
-    socket.emit("update proxy status",proxyStatus({status: "断开链接",type: "disconnect"}));
-});
+// io.on("connect", function (socket) {
+//     socket.emit("update proxy status",proxyStatus({status: "断开链接",type: "disconnect"}));
+// });
 
-io.on("connect", function (socket) {
-    socket.emit("update proxy status",proxyStatus({status: "重新建立链接",type: "disconnect"}));
-});
+// io.on("connect", function (socket) {
+//     socket.emit("update proxy status",proxyStatus({status: "重新建立链接",type: "disconnect"}));
+// });
 
 
 app.listens(443)
