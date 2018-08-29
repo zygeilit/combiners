@@ -1,7 +1,7 @@
 const socket = require('socket.io-client');
 class Requst {
     constructor() {
-        this.baseUrl = `http://localhost/tdServer/`;
+        this.baseUrl = `http://localhost/`;
         this.io = socket(this.baseUrl);
     }
     composeUrl(url) {
