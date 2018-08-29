@@ -7,7 +7,7 @@ import DomainStore from './domain'
 import CustomStore from './custom'
 import GeneralStore from './general'
 import WhiteListStore from './white-list'
-
+import api from '../api'
 export default class RootStore {
     constructor() {
         this.logStore = new LogStore(this)
@@ -21,8 +21,9 @@ export default class RootStore {
     }
     @action async initializeFromServer() {
         // 偷个懒 合并请求 批量设置所有页面数据 因为懒得配置路由
-        let result = await fetch('/get').then((response) => response.json());
-        let { activeTab, activeMenu, groups, general, domain, talentui, extension, whiteList, custom } = result
+        let result = await api.config();
+        // groups 暂时没用
+        let { activeTab, activeMenu, general, domain, talentui, extension, whiteList, custom } = result
         transaction(() => {
             this.domainStore.fromJS(domain)
             this.customStore.fromJS(custom)

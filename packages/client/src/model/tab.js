@@ -1,8 +1,8 @@
-import { observable, computed, reaction, action,toJS } from 'mobx';
+import { observable, computed, reaction, action, toJS } from 'mobx';
 import ProjectModel from './project'
 // import * as Utils from '../util';
 import { v1 } from "uuid";
-
+import api from '../api'
 export default class ProjectStore {
     id
     name
@@ -20,16 +20,12 @@ export default class ProjectStore {
     toJS() {
         return this.projects.map(project => project.toJS());
     }
-    subscribeServerToStore = () => {
+    subscribeServerToStore = () => (
         reaction(
-            () => this.projects.map(project => ({...project})),
-            () => window.fetch && fetch('/project', {
-                method: 'post',
-                body: JSON.stringify(this.toJS()),
-                headers: new Headers({ 'Content-Type': 'application/json' })
-            }),
+            () => this.projects.map(project => ({ ...project })),
+            () => api.projects(this.toJS()),
             { delay: 200 })
-    }
+    )
     static fromJS(object) {
         const { id, name, regular, projects } = object;
         const projectStore = new ProjectStore(id, name, regular);

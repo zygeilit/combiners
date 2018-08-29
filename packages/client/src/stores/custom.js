@@ -5,7 +5,7 @@ export default class WhiteListStore {
     subscribeServerToStore = () => {
         reaction(
             () => this.list.map(item => ({...item})),
-            () => window.fetch && fetch('/activeTab', {
+            () => window.fetch && fetch('/custom', {
                 method: 'post',
                 body: JSON.stringify(this.toJS()),
                 headers: new Headers({ 'Content-Type': 'application/json' })

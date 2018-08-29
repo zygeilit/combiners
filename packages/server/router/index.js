@@ -8,18 +8,28 @@ router
     // todo 把匹配器移动到路由
     // .get('*', (ctx, next) => {
     // })
-    .get('/get', (ctx, next) => {
+    .get('/tdServer/config', (ctx, next) => {
         ctx.body = JSON.parse(fs.readFileSync(path.resolve(homePath, configFile), 'utf8'));
     })
     // todo 备份配置 
-    .get('/backup', (ctx, next) => {
+    .get('/tdServer/backup', (ctx, next) => {
         res.download(path.resolve(__dirname, '../ssl/beisen.com.root.crt'))
     })
     // 保留手动下载部分
-    .get('/download', (ctx, next) => {
+    .get('/tdServer/download', (ctx, next) => {
         res.download(path.resolve(__dirname, '../ssl/beisen.com.root.crt'))
     })
-    .post('/save', (ctx, next) => {
+    .post('/tdServer/activeTab', (ctx, next) => {
+    })
+    .post('/tdServer/custom', (ctx, next) => {
+    })
+    .post('/tdServer/domain', (ctx, next) => {
+    })
+    .post('/tdServer/general', (ctx, next) => {
+    })
+    .post('/tdServer/activeMenu', (ctx, next) => {
+    })
+    .post('/tdServer/projects', (ctx, next) => {
         console.log(ctx.req)
         // let { body } = req;
         // fs.writeFile(path.resolve(homePath, configFile), JSON.stringify(body, null, 4), err => {

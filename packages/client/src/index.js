@@ -13,8 +13,7 @@ import 'normalize.css'
 import { inject, observer } from 'mobx-react';
 // import DevTools from 'mobx-react-devtools';
 import DevelopServer from '@material-ui/icons/ImportantDevicesTwoTone';
-const socket = require('socket.io-client')('http://localhost');
-
+import  api from './api'
 import Content from './pages'
 
 // const styles = theme => ({
@@ -65,9 +64,7 @@ const styles = theme => ({
 class App extends Component {
     componentDidMount() {
         const { logStore } = this.props;
-        socket.on('update proxy status', (log) => {
-            logStore.addNewLog(log)
-        });
+        api.log((log) => logStore.addNewLog(log))
     }
     render() {
         const { classes, viewStore } = this.props;
