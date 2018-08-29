@@ -20,16 +20,22 @@ router
         res.download(path.resolve(__dirname, '../ssl/beisen.com.root.crt'))
     })
     .post('/tdServer/activeTab', (ctx, next) => {
+        ctx.body  = 'hola'
     })
     .post('/tdServer/custom', (ctx, next) => {
+        ctx.body  = 'hola'
     })
     .post('/tdServer/domain', (ctx, next) => {
+        ctx.body  = 'hola'
     })
     .post('/tdServer/general', (ctx, next) => {
+        ctx.body  = 'hola'
     })
     .post('/tdServer/activeMenu', (ctx, next) => {
+        ctx.body  = 'hola'
     })
     .post('/tdServer/projects', (ctx, next) => {
+        ctx.body  = 'hola'
         console.log(ctx.req)
         // let { body } = req;
         // fs.writeFile(path.resolve(homePath, configFile), JSON.stringify(body, null, 4), err => {

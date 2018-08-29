@@ -15,19 +15,19 @@ class DevelopServerApi {
     activeTab(body) {
         return request.post({url:'activeTab',body})
     }
-    custom() {
+    custom(body) {
         return request.post({url:'custom',body})
     }
-    domain() {
+    domain(body) {
         return request.post({url:'domain',body})
     }
-    general() {
+    general(body) {
         return request.post({url:'general',body})
     }
-    activeMenu() {
+    activeMenu(body) {
         return request.post({url:'activeMenu',body})
     }
-    projects() {
+    projects(body) {
         return request.post({url:'projects',body})
     }
 }
