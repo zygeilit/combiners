@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import ReactComponentTemplate from '../src';
-import RootStore from '../src/stores/root'
+import RootStore from '../src/stores'
 
 import { Provider } from 'mobx-react';
 const rootStore = new RootStore()

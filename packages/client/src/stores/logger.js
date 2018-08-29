@@ -9,3 +9,5 @@ export default class LogStore {
         this.logs = [];
     }
 }
+
+//  调用socket

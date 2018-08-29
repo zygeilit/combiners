@@ -70,12 +70,12 @@ const styles = theme => ({
     },
 });
 
-@inject('allTabsStore')
+@inject('tabsStore')
 @observer
 class CustomizedTabs extends React.Component {
     render() {
-        const { classes, allTabsStore } = this.props;
-        const { tabs, activeTab, changeIndex } = allTabsStore
+        const { classes, tabsStore } = this.props;
+        const { tabs, activeTab, changeIndex } = tabsStore
         return (
             <Grid
                 container

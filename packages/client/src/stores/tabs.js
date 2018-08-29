@@ -1,5 +1,5 @@
 import { observable, computed, autorun, reaction, action } from 'mobx';
-import TabsModel from './tabs-model'
+import TabsModel from '../model/tab'
 export default class TabsStore {
     @observable tabs = [];
     @observable activeTab

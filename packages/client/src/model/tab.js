@@ -1,5 +1,5 @@
 import { observable, computed, reaction, action,toJS } from 'mobx';
-import ProjectModel from './project-model'
+import ProjectModel from './project'
 // import * as Utils from '../util';
 import { v1 } from "uuid";
 

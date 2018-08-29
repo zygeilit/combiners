@@ -1,7 +1,7 @@
 
 const path = require('path')
 module.exports = {
-    configFile: '.tdsconfig.json',
+    configFile: '.dsconfig.json',
     homePath:
         process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE,
     talentuiReplacer: /{{\s*project\s*}}/,
