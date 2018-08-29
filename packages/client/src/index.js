@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
+import 'babel-polyfill'
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -22,6 +23,7 @@ import Content from './pages'
 //     width: 500,
 //   },
 // });
+
 const drawerWidth = 220;
 
 const styles = theme => ({
@@ -62,12 +64,9 @@ const styles = theme => ({
 @observer
 class App extends Component {
     componentDidMount() {
-        console.log(this.props)
-        const { logStore,viewStore } = this.props;
+        const { logStore } = this.props;
         socket.on('update proxy status', (log) => {
-            console.log('日志状态更新')
             logStore.addNewLog(log)
-            viewStore.subscribeServerToStore()
         });
     }
     render() {

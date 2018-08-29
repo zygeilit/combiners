@@ -9,16 +9,14 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _dec, _class;
 // import PropTypes from 'prop-types';
 
-// sockets
-// const socket = io.connect('http://localhost');
-
-// immer
-// import { observer } from 'mobx-react';
+// import DevTools from 'mobx-react-devtools';
 
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+require('babel-polyfill');
 
 var _styles = require('@material-ui/core/styles');
 
@@ -52,10 +50,6 @@ require('normalize.css');
 
 var _mobxReact = require('mobx-react');
 
-var _mobxReactDevtools = require('mobx-react-devtools');
-
-var _mobxReactDevtools2 = _interopRequireDefault(_mobxReactDevtools);
-
 var _ImportantDevicesTwoTone = require('@material-ui/icons/ImportantDevicesTwoTone');
 
 var _ImportantDevicesTwoTone2 = _interopRequireDefault(_ImportantDevicesTwoTone);
@@ -71,6 +65,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var socket = require('socket.io-client')('http://localhost');
 
 // const styles = theme => ({
 //   root: {
@@ -116,7 +112,7 @@ var styles = function styles(theme) {
     };
 };
 
-var App = (_dec = (0, _mobxReact.inject)('viewStore', 'loggerStore'), _dec(_class = (0, _mobxReact.observer)(_class = function (_Component) {
+var App = (_dec = (0, _mobxReact.inject)('logStore', 'viewStore'), _dec(_class = (0, _mobxReact.observer)(_class = function (_Component) {
     _inherits(App, _Component);
 
     function App() {
@@ -128,21 +124,23 @@ var App = (_dec = (0, _mobxReact.inject)('viewStore', 'loggerStore'), _dec(_clas
     _createClass(App, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            socket.on('update proxy status', function (data) {
-                console.log(data);
-                log('状态更新' + data.status);
-                // addChatMessage(data);
-            });
+            // console.log(this.props)
+            var _props = this.props,
+                logStore = _props.logStore,
+                viewStore = _props.viewStore;
 
-            // socket.on('connect', message => console.log('%c    Socket 连接成功    ', 'background:#2ecc71;color:#fff'));
-            // socket.on('log', message => console.log(`%c   ${JSON.stringify(message)}   `, 'background:#cc712e;color:#fff'));
+            socket.on('update proxy status', function (log) {
+                // console.log('日志状态更新')
+                logStore.addNewLog(log);
+                viewStore.subscribeServerToStore();
+            });
         }
     }, {
         key: 'render',
         value: function render() {
-            var _props = this.props,
-                classes = _props.classes,
-                viewStore = _props.viewStore;
+            var _props2 = this.props,
+                classes = _props2.classes,
+                viewStore = _props2.viewStore;
 
             return _react2.default.createElement(
                 'div',

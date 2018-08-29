@@ -1,55 +1,42 @@
 
-import {observable} from 'mobx';
-useStrict(true);
-
-// "name": "extension",
-// "regular": "\\/ux\\/{{project}}\\/release\\/dist\\/(?:(app)-\\w*(\\.bundle)\\.min(\\.js)|(.*\\.bundle\\.js)|(.*\\.hot-update\\.js(?:on)?)|((?:\\w+\\/)+.*))",
-// "projects": [{
-//     "name": "",
-//     "port": "3000",
-//     "id": "981f5410-de1c-11e7-a954-2d672b89896c",
-//     "enabled": true
-// }]
-
-
+import { observable, action } from 'mobx';
 export default class ProjectModel {
-	store;
+    store
     id
+    @observable name;
     @observable port;
-	@observable title;
-    @observable selected;
-    
-	constructor(store, id, title, selected) {
-		this.store = store;
-		this.id = id;
-		this.title = title;
-		this.selected = selected;
-	}
-
-	toggle() {
-		this.selected = !this.selected;
-	}
-
-	destroy() {
-		this.store.projects.remove(this);
-	}
-    setTitle(port) {
-		this.port = port;
-	}
-	setTitle(title) {
-		this.title = title;
-	}
-    // 转化
-	toJS() {
+    @observable enabled;
+    constructor(store, id, name = '', port = 3000, enabled = false) {
+        this.store = store
+        this.id = id;
+        this.port = port;
+        this.name = name;
+        this.store = store;
+        this.enabled = enabled;
+    }
+    @action toggle = () => {
+        this.enabled = !this.enabled;
+    }
+    @action destroy = () => {
+        this.store.projects.remove(this);
+    }
+    toJS() {
 		return {
-            id: this.id,
+			id: this.id,
+            name: this.name,
             port: this.port,
-			title: this.title,
-			selected: this.selected
+			enabled: this.enabled
 		};
 	}
-    // 实例化
-	static fromJS(store, object) {
-		return new ProjectModel(store, object.id, object.title, object.selected);
-	}
+
+    @action setPort = (event) => {
+        this.port = event.target.value
+    }
+    @action setName = (event) => {
+        this.name = event.target.value
+    }
+    static fromJS(store, object) {
+        let { id, name, port, enabled } = object;
+        return new ProjectModel(store, id, name, port, enabled);
+    }
 }

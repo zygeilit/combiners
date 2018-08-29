@@ -39,6 +39,8 @@ module.exports = {
 
     // 主要匹配规则
     "talentui": {
+        "name":'TalentUI项目',
+        "id": "981f5410-de1c-11e7-a954-2d672289896d",
         "regular": "\\/ux\\/{{project}}\\/release\\/dist\\/(?:(main|common|webpack-bootstrap)-\\w*(\\.chunk)\\.min(\\.js)|(.*\\.chunk\\.js)|(.*\\.hot-update\\.js(?:on)?)|((?:\\w+\\/)+.*))",
         "projects": [
             {
@@ -50,6 +52,8 @@ module.exports = {
         ]
     },
     "extension": {
+        "name":'扩展项目',
+        "id": "981f5410-de1c-11e7-a954-2d672289896e",
         "regular": "\\/ux\\/{{project}}\\/release\\/dist\\/(?:(app)-\\w*(\\.bundle)\\.min(\\.js)|(.*\\.bundle\\.js)|(.*\\.hot-update\\.js(?:on)?)|((?:\\w+\\/)+.*))",
         "projects": [
             {

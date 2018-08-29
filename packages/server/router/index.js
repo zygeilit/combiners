@@ -20,16 +20,16 @@ router
         res.download(path.resolve(__dirname, '../ssl/beisen.com.root.crt'))
     })
     .post('/save', (ctx, next) => {
-        debugger
-        let { body } = req;
-        fs.writeFile(path.resolve(homePath, configFile), JSON.stringify(body, null, 4), err => {
-            if (err) {
-                res.json({ status: '500' })
-            } else {
-                markConfigChange();
-                res.json({ status: '200' })
-            }
-        })
+        console.log(ctx.req)
+        // let { body } = req;
+        // fs.writeFile(path.resolve(homePath, configFile), JSON.stringify(body, null, 4), err => {
+        //     if (err) {
+        //         res.json({ status: '500' })
+        //     } else {
+        //         markConfigChange();
+        //         res.json({ status: '200' })
+        //     }
+        // })
     })
 
 module.exports = router;

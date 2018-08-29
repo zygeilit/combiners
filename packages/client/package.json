@@ -37,6 +37,7 @@
         "mobx": "^5.0.4",
         "mobx-react": "^5.2.5",
         "mobx-react-devtools": "^6.0.3",
+        "mobx-react-router": "^4.0.4",
         "normalize.css": "^8.0.0",
         "react-router": "^4.3.1",
         "react-router-dom": "^4.3.1",
@@ -65,7 +66,7 @@
         "react": "^16.4.2",
         "react-dom": "^16.4.2",
         "react-transition-group": "^2.0.2",
-        "uuid": "^2.0.2",
+        "uuid": "^3.3.2",
         "webpack": "^3.8.1",
         "webpack-dev-server": "^2.9.4"
     },

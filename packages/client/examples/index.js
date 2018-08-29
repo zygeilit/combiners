@@ -5,6 +5,8 @@ import RootStore from '../src/stores/root'
 
 import { Provider } from 'mobx-react';
 const rootStore = new RootStore()
+rootStore.initializeFromServer()
+
 function start() {
     render(
         <Provider {...rootStore}>

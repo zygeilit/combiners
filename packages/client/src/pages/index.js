@@ -9,6 +9,7 @@ import About from './about'
 import Domain from './domain'
 import Custom from './custom'
 import Swiper from '../components/swiper'
+
 const styles = {
     slideContainer: {
         height: '100%',

@@ -118,14 +118,7 @@ var Content = function (_React$Component) {
                     PageContainer,
                     null,
                     ' ',
-                    _react2.default.createElement(_logger2.default, null),
-                    ' '
-                ),
-                _react2.default.createElement(
-                    PageContainer,
-                    null,
-                    ' ',
-                    _react2.default.createElement(_about2.default, null),
+                    _react2.default.createElement(_custom2.default, null),
                     ' '
                 ),
                 _react2.default.createElement(
@@ -139,7 +132,14 @@ var Content = function (_React$Component) {
                     PageContainer,
                     null,
                     ' ',
-                    _react2.default.createElement(_custom2.default, null),
+                    _react2.default.createElement(_logger2.default, null),
+                    ' '
+                ),
+                _react2.default.createElement(
+                    PageContainer,
+                    null,
+                    ' ',
+                    _react2.default.createElement(_about2.default, null),
                     ' '
                 )
             );

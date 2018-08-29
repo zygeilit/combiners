@@ -1,33 +1,41 @@
-import {observable} from 'mobx';
-useStrict(true);
-import {observable, computed, reaction} from 'mobx';
-import ProjectModel from '../models/ProjectModel'
-import * as Utils from '../utils';
+import { observable, computed, reaction, action,toJS } from 'mobx';
+import ProjectModel from './project-model'
+// import * as Utils from '../util';
+import { v1 } from "uuid";
 
 export default class ProjectStore {
-	store;
+    id
     name
     regular
     @observable projects = [];
-	addProject (title) {
-        // 新增项目
-		this.projects.push(new ProjectModel(this, Utils.uuid(), title, false));
-	}
+    constructor(id, name, regular) {
+        this.id = id;
+        this.name = name;
+        this.enabled = regular;
+        this.subscribeServerToStore()
+    }
+    @action addProject = () => {
+        this.projects.push(new ProjectModel(this, v1()));
+    }
+    toJS() {
+        return this.projects.map(project => project.toJS());
+    }
+    subscribeServerToStore = () => {
+        reaction(
+            () => this.projects.map(project => ({...project})),
+            () => window.fetch && fetch('/project', {
+                method: 'post',
+                body: JSON.stringify(this.toJS()),
+                headers: new Headers({ 'Content-Type': 'application/json' })
+            }),
+            { delay: 200 })
+    }
+    static fromJS(object) {
+        const { id, name, regular, projects } = object;
+        const projectStore = new ProjectStore(id, name, regular);
+        projectStore.projects = projects.map(item => new ProjectModel.fromJS(projectStore, item));
+        return projectStore;
 
-	clearCompleted () {
-		this.projects = this.projects.filter(
-			project => !project.completed
-		);
-	}
-
-	toJS() {
-		return this.projects.map(projects => projects.toJS());
-	}
-
-    // 转化
-	static fromJS(array) {
-		const projectStore = new ProjectStore();
-		projectStore.projects = array.map(item => ProjectModel.fromJS(projectStore, item));
-		return projectStore;
-	}
+    }
 }
+

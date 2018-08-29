@@ -1,10 +1,12 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _dec, _class;
 
 var _react = require('react');
 
@@ -36,6 +38,8 @@ var _Grid = require('@material-ui/core/Grid');
 
 var _Grid2 = _interopRequireDefault(_Grid);
 
+var _mobxReact = require('mobx-react');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -45,139 +49,123 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 function PageContainer(_ref) {
-  var children = _ref.children,
-      dir = _ref.dir;
+    var children = _ref.children,
+        dir = _ref.dir;
 
-  return _react2.default.createElement(
-    _Typography2.default,
-    { component: 'div', dir: dir,
-      style: { padding: 10 }
-    },
-    children
-  );
+    return _react2.default.createElement(
+        _Typography2.default,
+        { component: 'div', dir: dir,
+            style: { padding: 10 }
+        },
+        children
+    );
 }
 
 var styles = function styles(theme) {
-  return {
-    root: {
-      height: '100%',
-      display: 'flex',
-      width: '100%',
-      position: 'absolute',
-      flexGrow: 'row wrap',
-      backgroundColor: theme.palette.background.paper
-    },
-    tabsRoot: {
-      width: '100%',
-      borderBottom: '1px solid #e8e8e8'
-    },
-    tabsIndicator: {
-      backgroundColor: '#1890ff'
-    },
-    tabRoot: {
-      textTransform: 'initial',
-      minWidth: 72,
-      fontWeight: theme.typography.fontWeightRegular,
-      marginRight: theme.spacing.unit * 4,
-      fontFamily: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"'].join(','),
-      '&:hover': {
-        color: '#40a9ff',
-        opacity: 1
-      },
-      '&$tabSelected': {
-        color: '#1890ff',
-        fontWeight: theme.typography.fontWeightMedium
-      },
-      '&:focus': {
-        color: '#40a9ff'
-      }
-    },
-    tabSelected: {},
-    typography: {
-      padding: theme.spacing.unit * 3
-    }
-  };
+    return {
+        root: {
+            height: '100%',
+            display: 'flex',
+            width: '100%',
+            position: 'absolute',
+            flexGrow: 'row wrap',
+            backgroundColor: theme.palette.background.paper
+        },
+        tabsRoot: {
+            width: '100%',
+            borderBottom: '1px solid #e8e8e8'
+        },
+        tabsIndicator: {
+            backgroundColor: '#1890ff'
+        },
+        tabRoot: {
+            textTransform: 'initial',
+            minWidth: 72,
+            fontWeight: theme.typography.fontWeightRegular,
+            marginRight: theme.spacing.unit * 4,
+            fontFamily: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"'].join(','),
+            '&:hover': {
+                color: '#40a9ff',
+                opacity: 1
+            },
+            '&$tabSelected': {
+                color: '#1890ff'
+                //   fontWeight: theme.typography.fontWeightMedium,
+            },
+            '&:focus': {
+                color: '#40a9ff'
+            }
+        },
+        tabSelected: {},
+        typography: {
+            padding: theme.spacing.unit * 3
+        }
+    };
 };
 
-var CustomizedTabs = function (_React$Component) {
-  _inherits(CustomizedTabs, _React$Component);
+var CustomizedTabs = (_dec = (0, _mobxReact.inject)('allTabsStore'), _dec(_class = (0, _mobxReact.observer)(_class = function (_React$Component) {
+    _inherits(CustomizedTabs, _React$Component);
 
-  function CustomizedTabs() {
-    var _ref2;
+    function CustomizedTabs() {
+        _classCallCheck(this, CustomizedTabs);
 
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, CustomizedTabs);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
+        return _possibleConstructorReturn(this, (CustomizedTabs.__proto__ || Object.getPrototypeOf(CustomizedTabs)).apply(this, arguments));
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref2 = CustomizedTabs.__proto__ || Object.getPrototypeOf(CustomizedTabs)).call.apply(_ref2, [this].concat(args))), _this), _this.state = {
-      value: 0
-    }, _this.handleChange = function (event, value) {
-      _this.setState({ value: value });
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
+    _createClass(CustomizedTabs, [{
+        key: 'render',
+        value: function render() {
+            var _props = this.props,
+                classes = _props.classes,
+                allTabsStore = _props.allTabsStore;
+            var tabs = allTabsStore.tabs,
+                activeTab = allTabsStore.activeTab,
+                changeIndex = allTabsStore.changeIndex;
 
-  _createClass(CustomizedTabs, [{
-    key: 'render',
-    value: function render() {
-      var classes = this.props.classes;
-      var value = this.state.value;
+            return _react2.default.createElement(
+                _Grid2.default,
+                {
+                    container: true,
+                    direction: 'row',
+                    justify: 'flex-start',
+                    alignItems: 'flex-start' },
+                _react2.default.createElement(
+                    _Tabs2.default,
+                    {
+                        value: activeTab,
+                        onChange: changeIndex,
+                        classes: { root: classes.tabsRoot, indicator: classes.tabsIndicator } },
+                    tabs.map(function (tab) {
+                        return _react2.default.createElement(_Tab2.default, {
+                            disableRipple: true,
+                            key: tab.id,
+                            classes: { root: classes.tabRoot, selected: classes.tabSelected },
+                            label: tab.name
+                        });
+                    })
+                ),
+                _react2.default.createElement(
+                    'content',
+                    { className: 'content' },
+                    _react2.default.createElement(
+                        _swiper2.default,
+                        { value: activeTab },
+                        tabs.map(function (tab) {
+                            return _react2.default.createElement(
+                                PageContainer,
+                                { key: tab.id },
+                                _react2.default.createElement(_checkboxList2.default, { tab: tab }),
+                                ' '
+                            );
+                        })
+                    )
+                )
+            );
+        }
+    }]);
 
-
-      return _react2.default.createElement(
-        _Grid2.default,
-        {
-          container: true,
-          direction: 'row',
-          justify: 'flex-start',
-          alignItems: 'flex-start'
-        },
-        _react2.default.createElement(
-          _Tabs2.default,
-          {
-            value: value,
-            onChange: this.handleChange,
-            classes: { root: classes.tabsRoot, indicator: classes.tabsIndicator }
-          },
-          _react2.default.createElement(_Tab2.default, {
-            disableRipple: true,
-            classes: { root: classes.tabRoot, selected: classes.tabSelected },
-            label: 'Talent\u9879\u76EE'
-          }),
-          _react2.default.createElement(_Tab2.default, {
-            disableRipple: true,
-            classes: { root: classes.tabRoot, selected: classes.tabSelected },
-            label: '\u6269\u5C55\u9879\u76EE'
-          }),
-          _react2.default.createElement(_Tab2.default, {
-            disableRipple: true,
-            classes: { root: classes.tabRoot, selected: classes.tabSelected },
-            label: '\u81EA\u5B9A\u4E49\u9879\u76EE'
-          })
-        ),
-        _react2.default.createElement(
-          'content',
-          { className: 'content' },
-          _react2.default.createElement(
-            _swiper2.default,
-            this.state,
-            _react2.default.createElement(
-              PageContainer,
-              null,
-              _react2.default.createElement(_checkboxList2.default, null),
-              ' '
-            )
-          )
-        )
-      );
-    }
-  }]);
-
-  return CustomizedTabs;
-}(_react2.default.Component);
+    return CustomizedTabs;
+}(_react2.default.Component)) || _class) || _class);
 // CustomizedTabs.propTypes = {
 //   classes: PropTypes.object.isRequired,
 // };
