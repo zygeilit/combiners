@@ -22,7 +22,7 @@ export default class WhiteListStore {
         return this.projects.map(item => item.toJS());
     }
     @action fromJS = (array) => {
-        this.tabs = array.map(item => WhiteListModel.fromJS(this, item));
+        this.projects = array.map(item => WhiteListModel.fromJS(this, item));
         this.subscribeServerToStore()
     }
 }

@@ -25,7 +25,7 @@ const styles = theme => ({
 class SwitchListSecondary extends React.Component {
     render() {
         const { classes, project } = this.props;
-        const  { id, name, port, enabled } = project;
+        const  { id, name, ip, enabled } = project;
         return (<List key={id} disablePadding >
             <ListItem>
                 <ListItemIcon>
@@ -51,11 +51,9 @@ class SwitchListSecondary extends React.Component {
                 </ListItemIcon>
                 <ListItemIcon>
                     <Input
-                        value={port}
+                        value={ip}
                         placeholder="IP"
-                        onChange={project.setPort}
-
-                        // className={classes.input}
+                        disabled
                         inputProps={{
                             'aria-label': 'Description',
                         }}

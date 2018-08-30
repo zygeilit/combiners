@@ -9,7 +9,7 @@ export default class Domain extends React.Component {
     render() {
         const {domainStore } = this.props;
         return  <Row tab={domainStore} render={(item) => {
-          return  <Project key={item.id} project={item} />
+          return  <Project key={item.name} project={item} />
         }} ></Row>
     }
 }

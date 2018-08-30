@@ -10,29 +10,32 @@ import IconWebpack from '../static/webpack.png'
 import IconRedux from '../static/redux.png'
 import IconNode from '../static/nodejs.png'
 
+import { inject, observer } from 'mobx-react';
+
+@inject('aboutStore')
+@observer
 export default class About extends React.Component {
     render() {
+        const { aboutStore: { cards, copyright } } = this.props;
         return <section className='about-container'>
             <header className="about-header">
-                <Card 
-                    title = 'Cli'
-                    backgroundColor='#3c3c3c' 
-                    src={IconNode} />
-                <Card 
-                    title = 'Config'
-                    backgroundColor="rgba(142, 214, 251, 0.35)" 
-                    src={IconWebpack} />
-                <Card 
-                    title = 'bootstarp'
-                    backgroundColor="#e6d7ff" 
-                    src={IconRedux} />
+                {cards.map(k => {
+                    return <Card
+                        key = {k.name}
+                        title={k.name}
+                        backgroundColor={k.background}
+                        src={k.icon}
+                        icon = {k.icon}
+                        content= {k.content}
+                        />
+                })}
             </header>
             <content className="about-content">
 
                 {/* <Card></Card> */}
             </content>
             <footer className='about-footer'>
-                Talent UI 2.0 强力驱动
+                {copyright}
             </footer>
         </section>
     }

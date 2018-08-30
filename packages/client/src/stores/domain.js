@@ -20,7 +20,7 @@ export default class WhiteListStore {
         return this.projects.map(item => item.toJS());
     }
     @action fromJS = (array) => {
-        this.tabs = array.map(item => DomainModel.fromJS(this, item));
+        this.projects = array.map(item => DomainModel.fromJS(this, item));
         this.subscribeServerToStore()
     }
 }

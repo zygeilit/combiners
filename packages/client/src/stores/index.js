@@ -2,10 +2,10 @@ import { observable, transaction, configure, action, spy, reaction, computed } f
 import ViewStore from './view';
 import TabsStore from './tabs';
 import LogStore from './logger';
-import AboutStore from './about'
 import DomainStore from './domain'
 import CustomStore from './custom'
 import GeneralStore from './general'
+import AboutStore from './about'
 import WhiteListStore from './white-list'
 import api from '../api'
 export default class RootStore {
@@ -24,6 +24,7 @@ export default class RootStore {
         let result = await api.config();
         // groups 暂时没用
         let { activeTab, activeMenu, general, domain, talentui, extension, whiteList, custom } = result
+        // console.log(whiteList,domain,general)
         transaction(() => {
             this.domainStore.fromJS(domain)
             this.customStore.fromJS(custom)

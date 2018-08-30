@@ -43,7 +43,6 @@ function ImgMediaCard(props) {
           className={classes.media}
           height="140"
           image={src}
-
           title=""
         />
       </div>
@@ -53,8 +52,7 @@ function ImgMediaCard(props) {
             {title}
           </Typography>
           <Typography component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+            {content}
           </Typography>
         </CardContent>
       <CardActions>
