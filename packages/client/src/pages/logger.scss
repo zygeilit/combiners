@@ -33,7 +33,7 @@
     padding: 5px;
     list-style: none;
     background: #141414;
-    color: #45D40C;
+    color: #49ff00;
     font: .9em 'Andale Mono', Consolas, 'Courier New';
     line-height: 1.6em;
     border-bottom-right-radius: 3px;
@@ -52,3 +52,10 @@
     position: relative;
     padding: 0 0 0 15px;
   }
+    
+  .shell-body a {
+    color:#fff;
+  }
+  .shell-body a,span {
+    margin:0 6px;
+}

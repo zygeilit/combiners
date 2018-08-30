@@ -13,7 +13,7 @@ import 'normalize.css'
 import { inject, observer } from 'mobx-react';
 // import DevTools from 'mobx-react-devtools';
 import DevelopServer from '@material-ui/icons/ImportantDevicesTwoTone';
-import  api from './api'
+import api from './api'
 import Content from './pages'
 
 // const styles = theme => ({
@@ -59,7 +59,7 @@ const styles = theme => ({
     toolbar: theme.mixins.toolbar,
 });
 
-@inject('logStore','viewStore')
+@inject('logStore', 'viewStore')
 @observer
 class App extends Component {
     componentDidMount() {

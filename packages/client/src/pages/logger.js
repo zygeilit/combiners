@@ -1,7 +1,8 @@
 import React from 'react';
 
 import './logger.scss'
-import { inject, observer } from 'mobx-react';
+import { inject, observer,toJS } from 'mobx-react';
+import Log from '../components/log'
 @inject('logStore')
 @observer
 export default class Logger extends React.Component {
@@ -14,7 +15,7 @@ export default class Logger extends React.Component {
                 <div className="shell-wrap">
                     <ul className="shell-body">
                         {logStore.logs.map((log) => {
-                            return <li key={log.id} >{log.status}</li>
+                            return <Log key={log.id} {...log}/>
                         })}
                     </ul>
                 </div>
