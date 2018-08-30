@@ -1,10 +1,11 @@
 import { observable, reaction, action } from 'mobx';
 import DomainModel from '../model/domain'
+import { v1 } from "uuid";
 export default class WhiteListStore {
-    @observable domains = [];
+    @observable projects = [];
     subscribeServerToStore = () => {
         reaction(
-            () => this.domains.map(item => ({ ...item })),
+            () => this.projects.map(item => ({ ...item })),
             () => window.fetch && fetch('/domain', {
                 method: 'post',
                 body: JSON.stringify(this.toJS()),
@@ -12,8 +13,11 @@ export default class WhiteListStore {
             }),
             { delay: 200 })
     }
+    @action addProject = () => {
+        this.projects.push(new DomainModel(this, v1()));
+    }
     toJS() {
-        return this.domains.map(item => item.toJS());
+        return this.projects.map(item => item.toJS());
     }
     @action fromJS = (array) => {
         this.tabs = array.map(item => DomainModel.fromJS(this, item));

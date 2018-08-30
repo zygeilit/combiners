@@ -23,7 +23,7 @@ class ProjectContainer extends React.Component {
             <Button  onClick = {tab.addProject} variant="fab" mini color="secondary" aria-label="Add" className={classes.button}>
                     <AddIcon />
                 </Button>
-            { tab.projects.map(item => <Project key = {item.id} project = {item}/>)}
+            { tab.projects.map(item => this.props.render(item))}
             </div>
         );
     }

@@ -3,7 +3,8 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import ProjectRule from '../components/checkbox-list'
+import ProjectRule from '../components/row'
+import Project from '../components/project'
 import Swiper from '../components/swiper'
 import Grid from '@material-ui/core/Grid';
 import { inject, observer } from 'mobx-react';
@@ -97,7 +98,11 @@ class CustomizedTabs extends React.Component {
                 </Tabs>
                 <content className="content">
                     <Swiper value={activeTab}>
-                        {tabs.map(tab => <PageContainer key={tab.id}><ProjectRule tab = {tab} /> </PageContainer>)}
+                        {tabs.map(tab => <PageContainer key={tab.id}>
+                            <ProjectRule tab={tab} render={(item) => {
+                               return <Project key={item.id} project={item} />
+                            }} ></ProjectRule>
+                        </PageContainer>)}
                     </Swiper>
                 </content>
             </Grid>

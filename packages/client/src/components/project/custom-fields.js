@@ -40,7 +40,18 @@ class SwitchListSecondary extends React.Component {
                 </ListItemIcon>
                 <ListItemIcon>
                     <Input
-                        placeholder="项目名称(无ux前缀)"
+                        placeholder="名称"
+                        value={name}
+                        onChange={project.setName}
+                        // className={classes.input}
+                        inputProps={{
+                            'aria-label': 'Description',
+                        }}
+                    />
+                </ListItemIcon>
+                <ListItemIcon>
+                    <Input
+                        placeholder="请求url地址"
                         value={name}
                         onChange={project.setName}
                         // className={classes.input}
@@ -52,7 +63,7 @@ class SwitchListSecondary extends React.Component {
                 <ListItemIcon>
                     <Input
                         value={port}
-                        placeholder="端口号"
+                        placeholder="添加协议远程地址例如 localhost:3000/main.js"
                         onChange={project.setPort}
 
                         // className={classes.input}

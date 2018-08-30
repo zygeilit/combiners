@@ -1,5 +1,4 @@
 import React from 'react';
-import SwipeableViews from 'react-swipeable-views';
 import Typography from '@material-ui/core/Typography';
 import Project from './project'
 import General from './general'
@@ -10,6 +9,7 @@ import Domain from './domain'
 import Custom from './custom'
 import Swiper from '../components/swiper'
 
+
 const styles = {
     slideContainer: {
         height: '100%',
@@ -19,7 +19,7 @@ const styles = {
 function PageContainer({ children, dir }) {
     return (
         <Typography component="div" dir={dir}
-            style={{ paddingLeft: 10 }}
+            style={{ paddingLeft: 10,height:'100%' }}
         >
             {children}
         </Typography>

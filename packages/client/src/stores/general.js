@@ -1,10 +1,12 @@
 import { observable, reaction, action } from 'mobx';
 import GeneralModel from '../model/general'
+import { v1 } from "uuid";
+
 export default class WhiteListStore {
-    @observable generals = [];
+    @observable projects = [];
     subscribeServerToStore = () => {
         reaction(
-            () => this.generals.map(item => ({...item})),
+            () => this.projects.map(item => ({ ...item })),
             () => window.fetch && fetch('/general', {
                 method: 'post',
                 body: JSON.stringify(this.toJS()),
@@ -12,8 +14,11 @@ export default class WhiteListStore {
             }),
             { delay: 200 })
     }
+    @action addProject = () => {
+        this.projects.push(new GeneralModel(this, v1()));
+    }
     toJS() {
-        return this.generals.map(item => item.toJS());
+        return this.projects.map(item => item.toJS());
     }
     @action fromJS = (array) => {
         this.tabs = array.map(item => GeneralModel.fromJS(this, item));

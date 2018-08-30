@@ -40,7 +40,7 @@ class SwitchListSecondary extends React.Component {
                 </ListItemIcon>
                 <ListItemIcon>
                     <Input
-                        placeholder="项目名称(无ux前缀)"
+                        placeholder="标识"
                         value={name}
                         onChange={project.setName}
                         // className={classes.input}
@@ -53,6 +53,30 @@ class SwitchListSecondary extends React.Component {
                     <Input
                         value={port}
                         placeholder="端口号"
+                        onChange={project.setPort}
+
+                        // className={classes.input}
+                        inputProps={{
+                            'aria-label': 'Description',
+                        }}
+                    />
+                </ListItemIcon>
+                <ListItemIcon>
+                    <Input
+                        value={port}
+                        placeholder="规则"
+                        onChange={project.setPort}
+
+                        // className={classes.input}
+                        inputProps={{
+                            'aria-label': 'Description',
+                        }}
+                    />
+                </ListItemIcon>
+                <ListItemIcon>
+                    <Input
+                        value={port}
+                        placeholder="引用地址过滤"
                         onChange={project.setPort}
 
                         // className={classes.input}

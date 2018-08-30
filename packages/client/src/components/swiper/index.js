@@ -12,6 +12,7 @@ const styles = {
       const { value,children } = this.props;
     return (
         <SwipeableViews
+        containerStyle = {styles.slideContainer}
         style={styles.slideContainer}
         // axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}

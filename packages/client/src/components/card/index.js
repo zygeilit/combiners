@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
+// import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -9,35 +10,53 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const styles = {
+ wrap:{
+    display: 'flex',
+    flexFlow: 'column nowrap',
+    alignItems: 'center',
+    width:'100%',
+    padding:'20px 0',
+ },
   card: {
+
     maxWidth: 345,
+    marginRight:15,
   },
   media: {
+    width: 'auto',
+	height: 'auto',
+    maxHeight: 90,
+    maxWidth: '100%',
     // ⚠️ object-fit is not supported by IE11.
     objectFit: 'cover',
   },
 };
 
 function ImgMediaCard(props) {
-  const { classes } = props;
+  const { classes,src,backgroundColor,title,content } = props;
   return (
-    <Card className={classes.card}>
-      {/* <CardMedia
-        component="img"
-        className={classes.media}
-        height="140"
-        image="https://material-ui.com/static/images/cards/live-from-space.jpg"
-        title="Contemplative Reptile"
-      /> */}
-      <CardContent>
-        <Typography gutterBottom variant="headline" component="h2">
-          Talnet UI Dev Server
-        </Typography>
-        <Typography component="p">
-            抹去繁琐的Nginx配置过程,内置TalentUI 2.0 / Cloud扩展文件转发规则,支持自定义转发规则,
-            一键配置Https环境,无需手动生成证书,支持多站点多端口同时调试。
-        </Typography>
-      </CardContent>
+    <Card 
+    className={classes.card}>
+      <div style = {{backgroundColor:backgroundColor,...styles.wrap}}>
+        <CardMedia
+          component="img"
+          className={classes.media}
+          height="140"
+          image={src}
+
+          title=""
+        />
+      </div>
+
+        <CardContent>
+          <Typography gutterBottom variant="headline" component="h2">
+            {title}
+          </Typography>
+          <Typography component="p">
+            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+            across all continents except Antarctica
+          </Typography>
+        </CardContent>
       <CardActions>
         <Button size="small" color="primary">
           Star

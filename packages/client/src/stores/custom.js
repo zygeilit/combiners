@@ -1,10 +1,11 @@
 import { observable, computed, autorun, reaction, action } from 'mobx';
-import WhiteListModel from '../model/white-list'
-export default class WhiteListStore {
-    @observable list = [];
+import customModel from '../model/custom'
+import { v1 } from "uuid";
+export default class CustomStore {
+    @observable projects = [];
     subscribeServerToStore = () => {
         reaction(
-            () => this.list.map(item => ({...item})),
+            () => this.projects.map(item => ({...item})),
             () => window.fetch && fetch('/custom', {
                 method: 'post',
                 body: JSON.stringify(this.toJS()),
@@ -12,11 +13,14 @@ export default class WhiteListStore {
             }),
             { delay: 200 })
     }
+    @action addProject = () => {
+        this.projects.push(new customModel(this, v1()));
+    }
     toJS() {
-        return this.list.map(item => item.toJS());
+        return this.projects.map(item => item.toJS());
     }
     @action fromJS = (array) => {
-        this.tabs = array.map(item => WhiteListModel.fromJS(this, item));
+        this.projects = array.map(item => customModel.fromJS(this, item));
         this.subscribeServerToStore()
     }
 }
