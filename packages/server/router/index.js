@@ -15,14 +15,14 @@ router
     .get('/config', (ctx, next) => {
         ctx.body = getConfig();
     })
-    // todo 备份配置 
-    .get('/backup', (ctx, next) => {
-        res.download(path.resolve(__dirname, '../ssl/beisen.com.root.crt'))
-    })
-    // 保留手动下载部分
-    .get('/download', (ctx, next) => {
-        res.download(path.resolve(__dirname, '../ssl/beisen.com.root.crt'))
-    })
+    // // todo 备份配置 
+    // .get('/backup', (ctx, next) => {
+    //     res.download(path.resolve(__dirname, '../ssl/beisen.com.root.crt'))
+    // })
+    // // 保留手动下载部分
+    // .get('/download', (ctx, next) => {
+    //     res.download(path.resolve(__dirname, '../ssl/beisen.com.root.crt'))
+    // })
 
     .post('/activeTab', (ctx, next) => {
         const { body } = ctx.request;
@@ -38,11 +38,18 @@ router
         fs.writeFileSync(path.resolve(homePath, configFile), JSON.stringify(config), null, 4)
         ctx.body = 'hola'
     })
+    // 查看证书安装状态 存在则返回
+    // 查询dns  是否dns能查询到
+    // 过滤转换成tld 顶级域名
+    // 更改可编辑状态 封存可编辑状态(避免系统写入过多证书)
+    // 生成ssl证书文件 
+    // loading 交互
+    // 写入ssl证书
     .post('/domain', (ctx, next) => {
-        const { body } = ctx.request;
-        const config = getConfig()
-        config.domain = body
-        fs.writeFileSync(path.resolve(homePath, configFile), JSON.stringify(config), null, 4)
+        // const { body } = ctx.request;
+        // const config = getConfig()
+        // config.domain = body
+        // fs.writeFileSync(path.resolve(homePath, configFile), JSON.stringify(config), null, 4)
         ctx.body = 'hola'
     })
     .post('/general', (ctx, next) => {

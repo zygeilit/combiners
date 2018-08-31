@@ -42,6 +42,8 @@ io.on("connect", function (socket) {
 //     socket.emit("update proxy status",proxyStatus({status: "重新建立链接",type: "disconnect"}));
 // });
 
+// 除了域名之外的 全部host到原来的地址
+// .replace('.bundle', '');
 
 app.listens(443)
 app.listen(80)
