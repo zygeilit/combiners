@@ -6,10 +6,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Switch from '@material-ui/core/Switch';
 import ServerIcon from '@material-ui/icons/OndemandVideoTwoTone';
-import Input from '@material-ui/core/Input';
 import DeleteIcon from '@material-ui/icons/DeleteTwoTone';
 import IconButton from '@material-ui/core/IconButton';
 import { observer } from 'mobx-react';
+import Input from '../../components/input'
 
 const styles = theme => ({
     button: {
@@ -25,8 +25,8 @@ const styles = theme => ({
 class SwitchListSecondary extends React.Component {
     render() {
         const { classes, project } = this.props;
-        const  { id, name, ip, enabled } = project;
-        return (<List key={id} disablePadding >
+        const { id, name, ip, enabled } = project;
+        return (<List key={name} disablePadding >
             <ListItem>
                 <ListItemIcon>
                     <ServerIcon />
@@ -38,30 +38,19 @@ class SwitchListSecondary extends React.Component {
                         checked={enabled}
                     />
                 </ListItemIcon>
-                <ListItemIcon>
-                    <Input
-                        placeholder="域名"
-                        value={name}
-                        onChange={project.setName}
-                        // className={classes.input}
-                        inputProps={{
-                            'aria-label': 'Description',
-                        }}
-                    />
-                </ListItemIcon>
-                <ListItemIcon>
-                    <Input
-                        value={ip}
-                        placeholder="IP"
-                        disabled
-                        inputProps={{
-                            'aria-label': 'Description',
-                        }}
-                    />
-                </ListItemIcon>
+                <Input
+                    placeholder="域名"
+                    value={name}
+                    onChange={project.setName}
+                />
+                <Input
+                    value={ip}
+                    placeholder="IP"
+                    disabled
+                />
                 <ListItemIcon>
                     <IconButton className={classes.button} aria-label="Delete">
-                        <DeleteIcon onClick = {project.destroy} />
+                        <DeleteIcon onClick={project.destroy} />
                     </IconButton>
                 </ListItemIcon>
             </ListItem>

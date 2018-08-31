@@ -6,10 +6,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Switch from '@material-ui/core/Switch';
 import ServerIcon from '@material-ui/icons/OndemandVideoTwoTone';
-import Input from '@material-ui/core/Input';
+import Input from '../../components/input'
 import DeleteIcon from '@material-ui/icons/DeleteTwoTone';
 import IconButton from '@material-ui/core/IconButton';
 import { observer } from 'mobx-react';
+
 
 const styles = theme => ({
     button: {
@@ -25,7 +26,7 @@ const styles = theme => ({
 class SwitchListSecondary extends React.Component {
     render() {
         const { classes, project } = this.props;
-        const  { id, name, port, enabled,regular,referer } = project;
+        const { id, name, port, enabled, regular, referer } = project;
         return (<List key={id} disablePadding >
             <ListItem>
                 <ListItemIcon>
@@ -38,55 +39,30 @@ class SwitchListSecondary extends React.Component {
                         checked={enabled}
                     />
                 </ListItemIcon>
-                <ListItemIcon>
 
-                    <Input
-                        placeholder="标识"
-                        value={name}
-                        onChange={project.setName}
-                        // className={classes.input}
-                        inputProps={{
-                            'aria-label': 'Description',
-                        }}
-                    />
-                </ListItemIcon>
-                <ListItemIcon>
-                    <Input
-                        value={port}
-                        placeholder="端口号"
-                        onChange={project.setPort}
-
-                        // className={classes.input}
-                        inputProps={{
-                            'aria-label': 'Description',
-                        }}
-                    />
-                </ListItemIcon>
-                <ListItemIcon>
-                    <Input
-                        value={regular}
-                        placeholder="规则"
-                        onChange={project.setRegular}
-                        // className={classes.input}
-                        inputProps={{
-                            'aria-label': 'Description',
-                        }}
-                    />
-                </ListItemIcon>
-                <ListItemIcon>
-                    <Input
-                        value={referer}
-                        placeholder="引用地址过滤"
-                        onChange={project.setReferer}
-                        // className={classes.input}
-                        inputProps={{
-                            'aria-label': 'Description',
-                        }}
-                    />
-                </ListItemIcon>
+                <Input
+                    placeholder="标识"
+                    value={name}
+                    onChange={project.setName}
+                />
+                <Input
+                    value={port}
+                    placeholder="端口号"
+                    onChange={project.setPort}
+                />
+                <Input
+                    value={regular}
+                    placeholder="规则"
+                    onChange={project.setRegular}
+                />
+                <Input
+                    value={referer}
+                    placeholder="引用地址过滤"
+                    onChange={project.setReferer}
+                />
                 <ListItemIcon>
                     <IconButton className={classes.button} aria-label="Delete">
-                        <DeleteIcon onClick = {project.destroy} />
+                        <DeleteIcon onClick={project.destroy} />
                     </IconButton>
                 </ListItemIcon>
             </ListItem>

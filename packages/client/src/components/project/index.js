@@ -6,10 +6,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Switch from '@material-ui/core/Switch';
 import ServerIcon from '@material-ui/icons/OndemandVideoTwoTone';
-import Input from '@material-ui/core/Input';
+// import Input from '@material-ui/core/Input';
 import DeleteIcon from '@material-ui/icons/DeleteTwoTone';
 import IconButton from '@material-ui/core/IconButton';
 import { observer } from 'mobx-react';
+import Input from '../../components/input'
 
 const styles = theme => ({
     button: {
@@ -25,7 +26,7 @@ const styles = theme => ({
 class SwitchListSecondary extends React.Component {
     render() {
         const { classes, project } = this.props;
-        const  { id, name, port, enabled } = project;
+        const { id, name, port, enabled } = project;
         return (<List key={id} disablePadding >
             <ListItem>
                 <ListItemIcon>
@@ -38,32 +39,19 @@ class SwitchListSecondary extends React.Component {
                         checked={enabled}
                     />
                 </ListItemIcon>
-                <ListItemIcon>
-                    <Input
-                        placeholder="项目名称(无ux前缀)"
-                        value={name}
-                        onChange={project.setName}
-                        // className={classes.input}
-                        inputProps={{
-                            'aria-label': 'Description',
-                        }}
-                    />
-                </ListItemIcon>
-                <ListItemIcon>
-                    <Input
-                        value={port}
-                        placeholder="端口号"
-                        onChange={project.setPort}
-
-                        // className={classes.input}
-                        inputProps={{
-                            'aria-label': 'Description',
-                        }}
-                    />
-                </ListItemIcon>
+                <Input
+                    placeholder="项目名称"
+                    value={name}
+                    onChange={project.setName}
+                />
+                <Input
+                    value={port}
+                    placeholder='端口号'
+                    onChange={project.setPort}
+                />
                 <ListItemIcon>
                     <IconButton className={classes.button} aria-label="Delete">
-                        <DeleteIcon onClick = {project.destroy} />
+                        <DeleteIcon onClick={project.destroy} />
                     </IconButton>
                 </ListItemIcon>
             </ListItem>
