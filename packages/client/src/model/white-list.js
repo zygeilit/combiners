@@ -8,10 +8,9 @@ export default class WhiteListModel {
     constructor(store, id, regular = '', enabled = false, name = '') {
         this.store = store
         this.id = id;
-        this.port = regular;
-        this.name = enabled;
-        this.store = store;
-        this.enabled = name;
+        this.name = name;
+        this.regular = regular;
+        this.enabled = enabled;
     }
     @action toggle = () => {
         this.enabled = !this.enabled;
@@ -21,6 +20,9 @@ export default class WhiteListModel {
     }
     @action setRegular = (event) => {
         this.regular = event.target.value
+    }
+    @action setTarget = (event) => {
+        this.target = event.target.value
     }
     @action setName = (event) => {
         this.name = event.target.value

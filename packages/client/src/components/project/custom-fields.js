@@ -25,7 +25,8 @@ const styles = theme => ({
 class SwitchListSecondary extends React.Component {
     render() {
         const { classes, project } = this.props;
-        const  { id, name, port, enabled } = project;
+        const  { id, name, enabled,regular,target } = project;
+        console.log(project)
         return (<List key={id} disablePadding >
             <ListItem>
                 <ListItemIcon>
@@ -38,6 +39,8 @@ class SwitchListSecondary extends React.Component {
                         checked={enabled}
                     />
                 </ListItemIcon>
+
+
                 <ListItemIcon>
                     <Input
                         placeholder="名称"
@@ -52,8 +55,8 @@ class SwitchListSecondary extends React.Component {
                 <ListItemIcon>
                     <Input
                         placeholder="请求url地址"
-                        value={name}
-                        onChange={project.setName}
+                        value={regular}
+                        onChange={project.setRegular}
                         // className={classes.input}
                         inputProps={{
                             'aria-label': 'Description',
@@ -62,10 +65,9 @@ class SwitchListSecondary extends React.Component {
                 </ListItemIcon>
                 <ListItemIcon>
                     <Input
-                        value={port}
+                        value={target}
                         placeholder="添加协议远程地址例如 localhost:3000/main.js"
-                        onChange={project.setPort}
-
+                        onChange={project.setTarget}
                         // className={classes.input}
                         inputProps={{
                             'aria-label': 'Description',

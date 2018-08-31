@@ -6,12 +6,14 @@ export default class ProjectModel {
     @observable name;
     @observable port;
     @observable enabled;
-    constructor(store, id, name = '', port = 3000, enabled = false) {
+    @observable target;
+    @observable regular;
+    constructor(store, id, name = '', regular, enabled = false, target) {
         this.store = store
         this.id = id;
-        this.port = port;
         this.name = name;
-        this.store = store;
+        this.target = target;
+        this.regular = regular;
         this.enabled = enabled;
     }
     @action toggle = () => {
@@ -21,23 +23,27 @@ export default class ProjectModel {
         this.store.projects.remove(this);
     }
     toJS() {
-		return {
-			id: this.id,
+        return {
+            id: this.id,
             name: this.name,
-            port: this.port,
-			enabled: this.enabled
-		};
-	}
-
-    @action setPort = (event) => {
-        this.port = event.target.value
+            target :this.target,
+            enabled: this.enabled,
+            regular :this.regular,
+        };
+    }
+    
+    @action setRegular = (event) => {
+        this.regular = event.target.value
+    }
+    @action setTarget = (event) => {
+        this.target = event.target.value
     }
     @action setName = (event) => {
         this.name = event.target.value
     }
     static fromJS(store, object) {
-        let { id, name, port, enabled } = object;
-        return new ProjectModel(store, id, name, port, enabled);
+        let { id, name, enabled, regular, target } = object;
+        return new ProjectModel(store, id, name, regular, enabled, target);
     }
 }
 // 自定义 类似 Charles

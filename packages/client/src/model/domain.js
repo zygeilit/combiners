@@ -11,7 +11,6 @@ export default class ProjectModel {
         this.id = id;
         this.ip = ip;
         this.name = name;
-        this.store = store;
         this.enabled = enabled;
     }
     @action toggle = () => {

@@ -11,13 +11,14 @@ export default class ProjectModel {
     @observable enabled;
     @observable regular
     @observable referer
-    constructor(store, id, name = '', port = 3000, enabled = false) {
+    constructor(store, id, name = '', port = 3000, enabled = false,regular,referer) {
         this.store = store
         this.id = id;
         this.port = port;
         this.name = name;
-        this.store = store;
         this.enabled = enabled;
+        this.referer = referer;
+        this.regular = regular;
     }
     @action toggle = () => {
         this.enabled = !this.enabled;
@@ -48,8 +49,8 @@ export default class ProjectModel {
         this.name = event.target.value
     }
     static fromJS(store, object) {
-        let { id, name, port, enabled, groupId, regular, referer } = object;
-        return new ProjectModel(store, id, name, port, enabled, groupId, regular, referer);
+        let { id, name, port, enabled, regular, referer } = object;
+        return new ProjectModel(store, id, name, port, enabled, regular, referer);
     }
 }
 
