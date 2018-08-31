@@ -13,12 +13,12 @@ const app = new koa();
 const { io } = app;
 
 app
-    // .use(favicon(path.resolve(__dirname,'./static/favicon.ico')))
-    // .use(mount('/', serve(path.resolve(__dirname,'../client/examples/'))))
-    .use(matcher())
+    .use(favicon(path.resolve(__dirname,'./static/favicon.ico')))
+    .use(mount('/', serve(path.resolve(__dirname,'../client/examples/'))))
     .use(bodyParser())
     .use(router.routes())
     .use(router.allowedMethods())
+    .use(matcher())
     // .use(logger())
 
 
@@ -44,7 +44,6 @@ io.on("connect", function (socket) {
 
 // 除了域名之外的 全部host到原来的地址
 // .replace('.bundle', '');
-
 app.listens(443)
 app.listen(80)
 

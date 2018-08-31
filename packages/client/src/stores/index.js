@@ -32,6 +32,7 @@ export default class RootStore {
     @action async initializeFromServer() {
         // 偷个懒 合并请求 批量设置所有页面数据 因为懒得配置路由
         let result = await api.config();
+        console.log(result)
         // groups 暂时没用
         let { activeTab, activeMenu, general, domain, talentui, extension, whiteList, custom } = result
         // console.log(whiteList,domain,general)
