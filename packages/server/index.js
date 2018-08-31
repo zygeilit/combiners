@@ -13,12 +13,12 @@ const app = new koa();
 const { io } = app;
 
 app
-    .use(favicon(path.resolve(__dirname,'./static/favicon.ico')))
+    // .use(favicon(path.resolve(__dirname,'./static/favicon.ico')))
+    // .use(mount('/', serve(path.resolve(__dirname,'../client/examples/'))))
+    .use(matcher())
     .use(bodyParser())
     .use(router.routes())
     .use(router.allowedMethods())
-    .use(mount('/', serve(path.resolve(__dirname,'../client/examples/'))))
-    .use(matcher())
     // .use(logger())
 
 

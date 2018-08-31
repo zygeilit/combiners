@@ -1,16 +1,17 @@
 // 证书集 多域名support
-const fs = require('fs')
-const path = require('path')
 const tls = require("tls");
+const parseDomain = require("parse-domain");
 require('module-alias/register')
 const certificates = require('@cert/cert-composer')();
 const { _default } = certificates;
 module.exports = {
     ..._default,
     SNICallback: function (servername, callback) {
-        // todo 增加域名 通配符匹配 *.beisen.com
-        if (certificates[servername]) {
-            const ctx = tls.createSecureContext(Object.assign(certificates[servername]))
+        const {domain,tld} = parseDomain(servername)
+        const fullTld = `${domain}.${tld}`
+        const sslDomain = certificates[fullTld]
+        if (sslDomain) {
+            const ctx = tls.createSecureContext(Object.assign(sslDomain))
             // 兼容node低版本
             if (callback) {
                 callback(null, ctx);

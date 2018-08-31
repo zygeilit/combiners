@@ -37,6 +37,7 @@
     "koa2-connect": "^1.0.2",
     "mobx-react-router": "^4.0.4",
     "module-alias": "^2.1.0",
+    "parse-domain": "^2.1.2",
     "r2": "^2.0.1",
     "request": "^2.88.0",
     "socket.io": "^2.1.1",
