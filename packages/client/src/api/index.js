@@ -3,6 +3,9 @@ import request from './request';
 class DevelopServerApi {
     constructor() {
     }
+    connect(callback) {
+        return request.io.on('connect', callback);
+    }
     log(callback) {
         return request.io.on('update proxy status', callback);
     }

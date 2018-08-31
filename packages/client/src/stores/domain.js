@@ -1,16 +1,13 @@
 import { observable, reaction, action } from 'mobx';
 import DomainModel from '../model/domain'
 import { v1 } from "uuid";
-export default class WhiteListStore {
+import api from '../api'
+export default class DomainStore {
     @observable projects = [];
     subscribeServerToStore = () => {
         reaction(
             () => this.projects.map(item => ({ ...item })),
-            () => window.fetch && fetch('/domain', {
-                method: 'post',
-                body: JSON.stringify(this.toJS()),
-                headers: new Headers({ 'Content-Type': 'application/json' })
-            }),
+            () => api.domain(this.toJS()),
             { delay: 200 })
     }
     @action addProject = () => {

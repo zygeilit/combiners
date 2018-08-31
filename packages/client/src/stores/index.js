@@ -9,6 +9,10 @@ import AboutStore from './about'
 import WhiteListStore from './white-list'
 import api from '../api'
 export default class RootStore {
+    @observable snackbarStatus = {
+        message: '配置修改成功',
+        status: false
+    }
     constructor() {
         this.logStore = new LogStore(this)
         this.tabsStore = new TabsStore(this)
@@ -18,6 +22,12 @@ export default class RootStore {
         this.customStore = new CustomStore(this)
         this.generalStore = new GeneralStore(this);
         this.whiteListStore = new WhiteListStore(this);
+    }
+    // @action static updateMessage = (message = '配置修改成功') => {
+    //     this.message = message;
+    // }
+    @action changetSnackbarStatus = (config) => {
+        this.snackbarStatus = config;
     }
     @action async initializeFromServer() {
         // 偷个懒 合并请求 批量设置所有页面数据 因为懒得配置路由

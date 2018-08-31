@@ -2,11 +2,11 @@ import React from 'react';
 import './about.scss'
 import Card from '../components/card'
 import { inject, observer } from 'mobx-react';
-@inject('aboutStore')
+@inject('rootStore')
 @observer
 export default class About extends React.Component {
     render() {
-        const { aboutStore: { cards, copyright } } = this.props;
+        const { rootStore: { aboutStore: { cards, copyright } } } = this.props;
         return <section className='about-container'>
             <header className="about-header">
                 {cards.map(k => {

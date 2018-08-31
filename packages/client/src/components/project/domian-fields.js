@@ -25,8 +25,8 @@ const styles = theme => ({
 class SwitchListSecondary extends React.Component {
     render() {
         const { classes, project } = this.props;
-        const { id, name, ip, enabled } = project;
-        return (<List key={name} disablePadding >
+        const {  name, ip, enabled } = project;
+        return (<List disablePadding >
             <ListItem>
                 <ListItemIcon>
                     <ServerIcon />

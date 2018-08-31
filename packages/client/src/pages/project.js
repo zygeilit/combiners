@@ -71,11 +71,11 @@ const styles = theme => ({
     },
 });
 
-@inject('tabsStore')
+@inject('rootStore')
 @observer
 class CustomizedTabs extends React.Component {
     render() {
-        const { classes, tabsStore } = this.props;
+        const { classes, rootStore: { tabsStore } } = this.props;
         const { tabs, activeTab, changeIndex } = tabsStore
         return (
             <Grid
@@ -100,7 +100,7 @@ class CustomizedTabs extends React.Component {
                     <Swiper value={activeTab}>
                         {tabs.map(tab => <PageContainer key={tab.id}>
                             <ProjectRule tab={tab} render={(item) => {
-                               return <Project key={item.id} project={item} />
+                                return <Project key={item.id} project={item} />
                             }} ></ProjectRule>
                         </PageContainer>)}
                     </Swiper>

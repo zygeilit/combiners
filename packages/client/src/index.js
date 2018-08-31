@@ -15,7 +15,7 @@ import { inject, observer } from 'mobx-react';
 import DevelopServer from '@material-ui/icons/ImportantDevicesTwoTone';
 import api from './api'
 import Content from './pages'
-
+import Snackbars from './components/snackbars'
 // const styles = theme => ({
 //   root: {
 //     backgroundColor: theme.palette.background.paper,
@@ -59,15 +59,25 @@ const styles = theme => ({
     toolbar: theme.mixins.toolbar,
 });
 
-@inject('logStore', 'viewStore')
+@inject('rootStore')
 @observer
 class App extends Component {
     componentDidMount() {
-        const { logStore } = this.props;
-        api.log((log) => logStore.addNewLog(log))
+        const { rootStore: { logStore } } = this.props;
+        api.log((log) => {
+
+            logStore.addNewLog(log)
+        })
+        api.connect(() => {
+            this.props.rootStore.changetSnackbarStatus({
+                message: '服务启动成功',
+                status: true
+            })
+        })
     }
     render() {
-        const { classes, viewStore } = this.props;
+        const { classes, rootStore } = this.props;
+        const { viewStore } = rootStore
         return (<div className={classes.root}>
             <AppBar position="absolute" className={classes.appBar}>
                 <Toolbar>
@@ -98,11 +108,21 @@ class App extends Component {
             <main className={classes.content}>
                 <div className={classes.toolbar} />
                 <Content value={viewStore.activeMenu} />
+
             </main>
             {/* <DevTools/> */}
+            <Snackbars
+                open={rootStore.snackbarStatus.status}
+                message={rootStore.snackbarStatus.message}
+                handleClose={rootStore.changetSnackbarStatus}
+            />
         </div>
         );
     }
 }
 
+
 export default withStyles(styles)(App)
+
+
+

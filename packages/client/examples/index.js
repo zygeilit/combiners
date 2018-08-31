@@ -9,7 +9,7 @@ rootStore.initializeFromServer()
 
 function start() {
     render(
-        <Provider {...rootStore}>
+        <Provider rootStore = {rootStore}>
             <ReactComponentTemplate />
         </Provider>,
         document.getElementById('root'));

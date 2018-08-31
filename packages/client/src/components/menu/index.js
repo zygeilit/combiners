@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -48,7 +48,7 @@ const otherList = [
         icon: InfoIcon
     }]
 
-export class ListRender extends PureComponent {
+export class ListRender extends Component {
     handleClick = (id) => () => this.props.handleClick(id)
     render() {
         return <div>
@@ -65,13 +65,13 @@ export class ListRender extends PureComponent {
         </div>
     }
 }
-export class MainListItems extends PureComponent {
+export class MainListItems extends Component {
     render() {
         const { handleChangeIndex } = this.props
         return <ListRender handleClick={handleChangeIndex} list={mainList} />
     }
 }
-export class OtherListItems extends PureComponent {
+export class OtherListItems extends Component {
     render() {
         const { handleChangeIndex } = this.props
         return <ListRender handleClick={handleChangeIndex} list={otherList} />

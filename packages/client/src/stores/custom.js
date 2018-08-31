@@ -1,16 +1,20 @@
 import { observable, computed, autorun, reaction, action } from 'mobx';
 import customModel from '../model/custom'
 import { v1 } from "uuid";
+import api from '../api'
 export default class CustomStore {
+    rootStore
+    constructor(store) {
+        this.rootStore = store
+    }
     @observable projects = [];
     subscribeServerToStore = () => {
         reaction(
             () => this.projects.map(item => ({...item})),
-            () => window.fetch && fetch('/custom', {
-                method: 'post',
-                body: JSON.stringify(this.toJS()),
-                headers: new Headers({ 'Content-Type': 'application/json' })
-            }),
+            () => {
+                api.custom(this.toJS())
+                // this.rootStore.changetSnackbarStatus()
+            },
             { delay: 200 })
     }
     @action addProject = () => {

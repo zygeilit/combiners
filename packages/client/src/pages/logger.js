@@ -3,11 +3,11 @@ import React from 'react';
 import './logger.scss'
 import { inject, observer,toJS } from 'mobx-react';
 import Log from '../components/log'
-@inject('logStore')
+@inject('rootStore')
 @observer
 export default class Logger extends React.Component {
     render() {
-        const { logStore } = this.props;
+        const { logStore } = this.props.rootStore;
         return <section className='logger-container' >
             <header className="logger-header">
             </header>

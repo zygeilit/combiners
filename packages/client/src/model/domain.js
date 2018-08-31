@@ -3,10 +3,10 @@ import { observable, action } from 'mobx';
 export default class ProjectModel {
     store
     id
+    ip
     @observable name;
-    @observable ip;
     @observable enabled;
-    constructor(store, id, name = '', ip = 3000, enabled = false) {
+    constructor(store, id, name = '', ip = '', enabled = false) {
         this.store = store
         this.id = id;
         this.ip = ip;
@@ -22,8 +22,8 @@ export default class ProjectModel {
     toJS() {
 		return {
 			id: this.id,
-            name: this.name,
             ip: this.ip,
+            name: this.name,
 			enabled: this.enabled
 		};
 	}
