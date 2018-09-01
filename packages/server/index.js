@@ -6,6 +6,7 @@ const serve = require('koa-static');
 const router = require('./router');
 const matcher = require('@server/middleware/matcher')
 const mount = require('koa-mount');
+const public = '0.0.0.0'
 // const logger = require('koa-logger');
 const proxyStatus = require('./util/proxy-status')
 
@@ -44,7 +45,7 @@ io.on("connect", function (socket) {
 
 // 除了域名之外的 全部host到原来的地址
 // .replace('.bundle', '');
-app.listens(443)
-app.listen(80)
+app.listens(443,public)
+app.listen(80,public)
 
 
