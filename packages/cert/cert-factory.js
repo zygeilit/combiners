@@ -7,16 +7,15 @@
 * @Last Modified time: 2018-08-27 10:21:33
 */
 
-// https://ss64.com/osx/security-cert.html
-
 const sudo = require('sudo-prompt');
 
 const options = {
     name: 'develop-server',
 }
+// 必须是顶域
 module.exports = function CertGenerater(domain) {
-    const command = `security add-trusted-cert -d -k /Library/Keychains/System.keychain ${path}`
-    sudo.exec(command, options,
+    const command = `./shell/ssl.sh ${domain}`
+    sudo.exec(command,
         (error, stdout, stderr) => {
             if (error) throw error;
             console.log('stdout: ' + stdout);

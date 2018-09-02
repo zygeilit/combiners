@@ -7,7 +7,7 @@ if [ -f "out/root.crt" ]; then
 fi
 
 if [ ! -d "out" ]; then
-    bash flush.sh
+    bash clear.sh
 fi
 
 openssl req -config ca.cnf \
