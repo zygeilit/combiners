@@ -10,11 +10,11 @@
 const sudo = require('sudo-prompt');
 
 const options = {
-    name: 'develop-server',
+    name: 'develop server',
 }
 // 先不优化 
 module.exports = {
-    addCert: function() {
+    addCert: function(path) {
         const command = `security add-trusted-cert -d -k /Library/Keychains/System.keychain ${path}`
         sudo.exec(command, options,
             (error, stdout, stderr) => {

@@ -10,12 +10,12 @@
 const sudo = require('sudo-prompt');
 
 const options = {
-    name: 'develop-server',
+    name: 'develop server',
 }
 // 必须是顶域
 module.exports = function CertGenerater(domain) {
     const command = `./shell/ssl.sh ${domain}`
-    sudo.exec(command,
+    sudo.exec(command,options,
         (error, stdout, stderr) => {
             if (error) throw error;
             console.log('stdout: ' + stdout);
