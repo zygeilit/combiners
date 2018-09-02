@@ -13,7 +13,6 @@ router
     // .get('*', (ctx, next) => {
     // })
     .get('/config', (ctx, next) => {
-        console.log(222)
         ctx.body = getConfig();
     })
     // // todo 备份配置 
@@ -47,10 +46,11 @@ router
     // loading 交互
     // 写入ssl证书
     .post('/domain', (ctx, next) => {
-        const { body } = ctx.request;
-        const config = getConfig()
-        config.domain = body
-        fs.writeFileSync(path.resolve(homePath, configFile), JSON.stringify(config), null, 4)
+        // let { body } = ctx.request;
+        // const config = getConfig()
+        // console.log(body)
+        // config.domain = body
+        // fs.writeFileSync(path.resolve(homePath, configFile), JSON.stringify(config), null, 4)
         ctx.body = 'hola'
     })
     .post('/general', (ctx, next) => {

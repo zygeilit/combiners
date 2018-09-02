@@ -25,7 +25,7 @@ const styles = theme => ({
 class SwitchListSecondary extends React.Component {
     render() {
         const { classes, project } = this.props;
-        const {  name, ip, enabled } = project;
+        const { name, ip, enabled } = project;
         return (<List disablePadding >
             <ListItem>
                 <ListItemIcon>
@@ -36,11 +36,13 @@ class SwitchListSecondary extends React.Component {
                     <Switch
                         onChange={project.toggle}
                         checked={enabled}
+                        disabled
                     />
                 </ListItemIcon>
                 <Input
                     placeholder="域名"
-                    value={name}
+                    value={`*.${name}`}
+                    disabled
                     onChange={project.setName}
                 />
                 <Input
@@ -49,8 +51,10 @@ class SwitchListSecondary extends React.Component {
                     disabled
                 />
                 <ListItemIcon>
-                    <IconButton className={classes.button} aria-label="Delete">
-                        <DeleteIcon onClick={project.destroy} />
+                    <IconButton disabled className={classes.button} aria-label="Delete">
+                        {/* <DeleteIcon onClick={project.destroy} /> */}
+                        <DeleteIcon onClick={() => { }} />
+
                     </IconButton>
                 </ListItemIcon>
             </ListItem>

@@ -30,10 +30,10 @@ module.exports = {
 
     // 多域名兼容
     "domain": [{
-        "name": "stnew03.beisen.com",
+        "name": "beisen.com",
         "ip": "60.28.207.67"
     }, {
-        "name": "xfiles.tita.com",
+        "name": "tita.com",
         "ip": "60.28.207.67"
     }],
 
