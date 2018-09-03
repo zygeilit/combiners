@@ -15,7 +15,7 @@ const { io } = app;
 
 app
     .use(favicon(path.resolve(__dirname,'./static/favicon.ico')))
-    .use(mount('/', serve(path.resolve(__dirname,'../client/examples/'))))
+    .use(mount('/', serve(path.resolve(__dirname,'../client/dist/'))))
     .use(bodyParser())
     .use(router.routes())
     .use(router.allowedMethods())
