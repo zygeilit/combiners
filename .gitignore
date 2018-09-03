@@ -1,6 +1,4 @@
 .DS_Store
-dist/electron/*
-dist/web/*
 build/*
 !build/icons
 coverage
@@ -11,3 +9,4 @@ thumbs.db
 !.gitkeep
 package-lock.json
 yarn.lock
+.cache-loader/
