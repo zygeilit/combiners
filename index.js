@@ -15,7 +15,7 @@ if (!fs.existsSync(configPath)) {
     try {
         certManager.addCert(rootCert)
     } catch (error) {
-        console.log('only support osx platform', error)
+        console.log('进根证书自动导入失败,请手动下载导入')
     }
 }
 const options = {
@@ -23,6 +23,8 @@ const options = {
 }
 
 sudo.exec(`node ${__dirname}/packages/server/index.js`, options, function (error, stdout, stderr) {
-    if (error) throw error;
-    console.log('no error')
+    if (error) {
+        console.log('服务启动失败,请确认80端口未占用,请确认nginx已经关闭。')
+        return
+    };
 })

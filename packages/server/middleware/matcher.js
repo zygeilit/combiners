@@ -8,6 +8,7 @@ const proxyStatus = require('../util/proxy-status')
 
 module.exports = () => (
     async (ctx, next) => {
+        // 增加移动端支持 非支持domain 直接请求原来数据  proxy 到 target
         const { req, res } = ctx;
         const result  = checker(ctx);
         const { isRemoteFileRequest, responseTarget, changeOrigin, responsePath } = result;
@@ -21,6 +22,7 @@ module.exports = () => (
                 ctx.body = `你指定的本地文件不存在`;
             }
         } else {
+
             // // todo 优化代理方式
             ctx.respond = false
             // // 替换规则清洗后的 url
