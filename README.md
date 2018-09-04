@@ -5,7 +5,7 @@
 
 ![transformers](https://raw.githubusercontent.com/abnerCrack/combiners/master/docs/transformers.jpg)
 
-### 基于 koa + react + mobox + material-ui 开发
+### 基于 koa + react + mobx + material-ui 开发
 
 > 用法
 
