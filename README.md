@@ -2,6 +2,9 @@
 
 > combiners 《变形金刚》系列中的超级合体战士。
 
+
+![transformers](https://https://github.com/abnerCrack/combiners/blob/master/docs/transformers.jpg)
+
 #### 基于 koa + react + mobox + material-ui 开发
 
 > 用法
