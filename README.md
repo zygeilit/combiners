@@ -1,11 +1,13 @@
-# talentui-dev-server
+# combiners
+
+> combiners 《变形金刚》系列中的超级合体战士。
 
 #### 基于 koa + react + mobox + material-ui 开发
 
 > 用法
 
 ````
-  npm install talentui-dev-server -g
+  npm install combiners -g
   tds
   open http://localhost
   
