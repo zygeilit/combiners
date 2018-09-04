@@ -9,7 +9,7 @@ const { homePath, configFile } = require('@server/constant');
 const configPath = path.join(homePath, configFile);
 const rootCert = path.join(__dirname, './packages/cert/shell/out/root.crt')
 
-// 证书导入 可选 1.2
+// 证书导入 可选 1.0
 if (!fs.existsSync(configPath)) {
     fs.writeFileSync(configPath, JSON.stringify(initData, null, 4), 'utf8')
     try {
