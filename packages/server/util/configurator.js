@@ -14,9 +14,9 @@ module.exports = {
         data.changed = true;
     },
     getConfig: function () {
-        if (data.changed) {
+        // if (data.changed) {
             data.config = loadConfigData(configPath);
-        }
+        // }
         return data.config
     }
 }

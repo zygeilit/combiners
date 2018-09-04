@@ -79,7 +79,7 @@ function searchInGeneral(desciptions) {
     });
     if (matched) {
         let { regular, port = 3000, name } = matched;
-        desciptions.isRemoteFileRequest = isRemoteFileRequest;
+        desciptions.isRemoteFileRequest = !isRemoteFileRequest;
         desciptions.status = proxyDecision.general;
         desciptions.identifier = name;
         desciptions.responseTarget = `http://localhost:${port}`;
@@ -103,7 +103,7 @@ function searchInTalentUI(desciptions) {
     });
 
     if (matched) {
-        desciptions.isRemoteFileRequest = isRemoteFileRequest;
+        desciptions.isRemoteFileRequest = !isRemoteFileRequest;
         desciptions.status = proxyDecision.talentui;
         desciptions.identifier = matched.name;
         desciptions.responseTarget = `http://localhost:${matched.port}`;
@@ -128,7 +128,7 @@ function searchInTalentExtension(desciptions) {
         return regx.test(requestPath);
     });
     if (matched) {
-        desciptions.isRemoteFileRequest = isRemoteFileRequest;
+        desciptions.isRemoteFileRequest = !isRemoteFileRequest;
         desciptions.status = proxyDecision.extension;
         desciptions.identifier = matched.name;
         desciptions.responseTarget = `http://localhost:${matched.port}`;
