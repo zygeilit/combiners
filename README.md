@@ -11,9 +11,8 @@
 
 ````
   npm install combiners -g
-  tds
+  combiners  
   open http://localhost
-  
 ````
 
 # todo 
@@ -26,6 +25,7 @@
 - [X] 自动导入证书
 - [X] 支持远程访问
 - [X] 移动调试
+- [ ] 增加open命令自动打开localhost
 - [ ] Mock拦截
 - [ ] 接收sockets 自动添加项目
 - [ ] 接收项目依赖分析
