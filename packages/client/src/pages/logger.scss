@@ -3,7 +3,8 @@
     -webkit-font-smoothing: antialiased;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
-.logger-container{
+
+.logger-container {
     height: 100%;
 }
 
@@ -12,22 +13,23 @@
     width: 98%;
     height: 98%;
     border-radius: 3px;
-  }
-  
-  .shell-top-bar {
+}
+
+.shell-top-bar {
     text-align: center;
     color: #525252;
     padding: 5px 0;
     margin: 0;
-    text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
     font-size: 0.85em;
     border: 1px solid #CCCCCC;
     border-bottom: none;
     // border-top-left-radius: 3px;
     // border-top-right-radius: 3px;
-    background: #f7f7f7; 
-  }
-  .shell-body {
+    background: #f7f7f7;
+}
+
+.shell-body {
     height: 100%;
     margin: 0;
     padding: 5px;
@@ -38,24 +40,27 @@
     line-height: 1.6em;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
-  }
-  
-  .shell-body li:before {
+}
+
+.shell-body li:before {
     content: '$';
     position: absolute;
     left: 0;
     top: 0;
-  }
-  
-  .shell-body li {
+}
+
+.shell-body li {
     word-wrap: break-word;
     position: relative;
     padding: 0 0 0 15px;
-  }
-    
-  .shell-body a {
-    color:#fff;
-  }
-  .shell-body a,span {
-    margin:0 6px;
+}
+
+.shell-body a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.shell-body a,
+span {
+    margin: 0 6px;
 }

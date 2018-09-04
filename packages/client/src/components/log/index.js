@@ -2,11 +2,13 @@ import React from 'react';
 
 export default class Content extends React.Component {
     render() {
-        const { type, status, requestPath, responseTarget } = this.props;
-        if (type === 'connect') {return <li className="connect">
-            <span>{status}</span>
-        </li>}
-        const path = responseTarget + requestPath
+        const { type, status, requestPath, responseTarget, responsePath } = this.props;
+        if (type === 'connect') {
+            return <li className="connect">
+                <span>{status}</span>
+            </li>
+        }
+        const path = responseTarget + '/' + responsePath
         return (
             <li>
                 <span>{status}</span>
