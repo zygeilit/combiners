@@ -1,8 +1,8 @@
-module.exports = function (servername) {
-    //todo 兼容常见 后缀名成 .tv .info 等等
-    try {
-        return servername.split('.').slice(-2).join('.')
-    } catch (error) {
-        return 'beisen.com'
-    }
+module.exports = function (domain) {
+    // SNI 需要解析顶域
+    const specialTld = ['.com.cn', '.net.cn', '.org.cn', '.gov.cn']
+    let position = -2;
+    const hasSpecial = specialTld.filter(item => domain.lastIndexOf(item) > 0)
+    if (hasSpecial.length > 0) position = -3;
+    return domain.split('.').slice(position).join('.')
 };
