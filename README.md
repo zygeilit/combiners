@@ -2,6 +2,10 @@
 
 > Combiners 《变形金刚》系列中的超级合体战士。
 
+[![GitHub issues](https://img.shields.io/github/issues/abnerCrack/combiners.svg?style=flat-square)](https://github.com/abnerCrack/combiners/issues)
+[![GitHub stars](https://img.shields.io/github/stars/abnerCrack/combiners.svg?style=flat-square)](https://github.com/abnerCrack/combiners/stars)
+[![GitHub forks](https://img.shields.io/github/forks/abnerCrack/combiners.svg?style=flat-square)](https://github.com/abnerCrack/combiners/forks)
+[![GitHub license](https://img.shields.io/github/license/abnerCrack/combiners.svg?style=flat-square)](https://github.com/abnerCrack/combiners/license)
 
 ![transformers](https://raw.githubusercontent.com/abnerCrack/combiners/master/docs/transformers.jpg)
 
