@@ -47,7 +47,7 @@
 - [ ] 服务端 
 - [ ] 释放证书配置部署
 - [ ] 服务端部署支持
-- [ ] 规范化 Typescript / tslint / css统一 / commit信息规范化 / issue模板 / 文档 / 使用示例 / 使用视频
+- [ ] 规范化 Typescript / tslint / css统一 / commit信息规范化 / issue模板 / 文档 / 使用示例 / 使用视频 / 版本更新日志
 
 
 
