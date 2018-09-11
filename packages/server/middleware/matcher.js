@@ -10,14 +10,15 @@ module.exports = () => (
     async (ctx, next) => {
         // 增加移动端支持 非支持domain 直接请求原来数据  proxy 到 target
         const { req, res } = ctx;
-        const result  = checker(ctx);
+        const result = checker(ctx);
         const { isRemoteFileRequest, responseTarget, changeOrigin, responsePath } = result;
         // 发送链接日志
         ctx.app.io.emit('update proxy status', proxyStatus(result));
         // 根据匹配器返回结果
         if (!isRemoteFileRequest) {
             if (fs.existsSync(responsePath)) {
-                await send(ctx, responsePath);
+                // 请求本地静态文件
+                await send(ctx, responsePath, { root: '/' });
             } else {
                 ctx.body = `你指定的本地文件不存在`;
             }

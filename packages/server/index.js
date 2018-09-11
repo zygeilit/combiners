@@ -6,7 +6,10 @@ const serve = require('koa-static');
 const router = require('./router');
 const matcher = require('@server/middleware/matcher')
 const mount = require('koa-mount');
+const cors = require('@koa/cors');
 const public = '0.0.0.0'
+
+
 // const logger = require('koa-logger');
 const proxyStatus = require('./util/proxy-status')
 
@@ -14,6 +17,7 @@ const app = new koa();
 const { io } = app;
 
 app
+    .use(cors())
     .use(favicon(path.resolve(__dirname,'./static/favicon.ico')))
     .use(mount('/', serve(path.resolve(__dirname,'../client/dist/'))))
     .use(bodyParser())

@@ -40,7 +40,7 @@ function searchInCustom(desciptions) {
     let { requestPath } = desciptions;
     let matched = custom.find(item => {
         if (!item.enabled) return false;
-        return requestPath.indexOf(item.regular) !== -1;
+        return item.regular.indexOf(requestPath) !== -1;
     });
     if (matched) {
         desciptions.isRemoteFileRequest =
@@ -49,13 +49,14 @@ function searchInCustom(desciptions) {
                 : isRemoteFileRequest;
         desciptions.status = proxyDecision.custom;
         desciptions.identifier = matched.name;
-        if (desciptions.isRemoteFileRequest === isRemoteFileRequest) {
+        if (!desciptions.isRemoteFileRequest === isRemoteFileRequest) {
             desciptions.responseTarget = "Local File System";
             desciptions.responsePath = matched.target;
         } else {
             let oUrl = url.parse(matched.target);
             desciptions.responseTarget = `${oUrl.protocol}//${oUrl.host}`;
             desciptions.responsePath = oUrl.path;
+            // desciptions.changeOrigin = false;
         }
         return true;
     }

@@ -56,7 +56,7 @@ module.exports = {
         "key" :"extension",
         "name":'扩展项目',
         "id": "981f5410-de1c-11e7-a954-2d672289896e",
-        "regular": "\\/ux\\/{{project}}\\/release\\/dist\\/(?:(app)-\\w*(\\.bundle)\\.min(\\.js)|(.*\\.bundle\\.js)|(.*\\.hot-update\\.js(?:on)?)|((?:\\w+\\/)+.*))",
+        "regular": "\\/ux\\/{{project}}\\/release\\/dist\\/(?:(app|main|common|BeisenCloudMobile|BeisenCloudUI)-\\w*(\\.bundle)\\.min(\\.js)|(.*\\.bundle\\.js)|(.*\\.hot-update\\.js(?:on)?)|((?:\\w+\\/)+.*))",
         "projects": [
             {
                 "name": "tenantbase",
