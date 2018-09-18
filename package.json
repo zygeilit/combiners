@@ -91,6 +91,10 @@
                 {
                     "type": "docs 📚  ",
                     "release": "patch"
+                },
+                {
+                    "type": "release",
+                    "release": "patch"
                 }
             ],
             "parserOpts": {

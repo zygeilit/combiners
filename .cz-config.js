@@ -41,15 +41,16 @@ module.exports = {
       name: '📦  package:     update package'
     },
     {
-      value: 'config  ⚙️  ',
-      name: '⚙️  config:     update config'
+      value: 'settings  ⚙️  ',
+      name: '⚙️  settings:     update config'
+    },
+    {
+      value: 'release',
+      name: 'release:     release package'
     }
-
-
-
   ],
 
-  scopes: ['server','client','cert','settings','config'],
+  scopes: ['server','client','cert','settings'],
 
 //   allowCustomScopes: true,
   allowBreakingChanges: ['feat', 'fix']
