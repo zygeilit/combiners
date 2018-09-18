@@ -2,11 +2,11 @@
 
 > Combiners 《变形金刚》系列中的超级合体战士。
 
-[![GitHub issues](https://img.shields.io/github/issues/abnerCrack/combiners.svg?style=flat-square)](https://github.com/abnerCrack/combiners/issues)
-[![GitHub stars](https://img.shields.io/github/stars/abnerCrack/combiners.svg?style=flat-square)](https://github.com/abnerCrack/combiners/)
-[![GitHub forks](https://img.shields.io/github/forks/abnerCrack/combiners.svg?style=flat-square)](https://github.com/abnerCrack/combiners/forks)
-[![GitHub license](https://img.shields.io/github/license/abnerCrack/combiners.svg?style=flat-square)](https://github.com/abnerCrack/combiners/license)
-
+[![GitHub issues](https://img.shields.io/github/issues/abnerCrack/combiners.svg?longCache=true&style=flat-square)](https://github.com/abnerCrack/combiners/issues)
+[![GitHub stars](https://img.shields.io/github/stars/abnerCrack/combiners.svg?longCache=true&style=flat-square)](https://github.com/abnerCrack/combiners/)
+[![GitHub forks](https://img.shields.io/github/forks/abnerCrack/combiners.svg?longCache=true&style=flat-square)](https://github.com/abnerCrack/combiners/forks)
+[![GitHub license](https://img.shields.io/github/license/abnerCrack/combiners.svg?longCache=true&style=flat-square)](https://github.com/abnerCrack/combiners/license)
+[![GitHub PR](https://img.shields.io/badge/pr-welcome-ff69b4.svg?longCache=true&style=flat-square)](https://github.com/abnerCrack/combiners/pulls)
 ![transformers](https://raw.githubusercontent.com/abnerCrack/combiners/master/docs/transformers.jpg)
 
 ### 基于 koa + react + mobx + material-ui 开发
