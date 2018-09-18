@@ -7,6 +7,7 @@
 [![GitHub forks](https://img.shields.io/github/forks/abnerCrack/combiners.svg?longCache=true&style=flat-square)](https://github.com/abnerCrack/combiners/forks)
 [![GitHub license](https://img.shields.io/github/license/abnerCrack/combiners.svg?longCache=true&style=flat-square)](https://github.com/abnerCrack/combiners/license)
 [![GitHub PR](https://img.shields.io/badge/pr-welcome-ff69b4.svg?longCache=true&style=flat-square)](https://github.com/abnerCrack/combiners/pulls)
+[![Install Size](https://img.shields.io/badge/size-guess-orange.svg?longCache=true&style=flat-square)](https://packagephobia.now.sh/result?p=combiners)
 ![transformers](https://raw.githubusercontent.com/abnerCrack/combiners/master/docs/transformers.jpg)
 
 ### 基于 koa + react + mobx + material-ui 开发
