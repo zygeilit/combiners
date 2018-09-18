@@ -1,59 +1,107 @@
 {
-  "name": "combiners",
-  "version": "0.0.0-development",
-  "description": "",
-  "main": "index.js",
-  "repository": "https://github.com/abnerCrack/combiners.git",
-  "scripts": {
-    "commit": "git-cz",
-    "semantic-release": "semantic-release",
-    "travis-deploy-once": "travis-deploy-once"
-  },
-  "bin": {
-    "combiners": "./index.js"
-  },
-  "author": "crack <test@text.com> (http://yourblog.com/)",
-  "license": "MIT",
-  "_moduleAliases": {
-    "@root": ".",
-    "@client": "packages/client",
-    "@cert": "packages/cert",
-    "@server": "packages/server",
-    "@sockets": "packages/sockets"
-  },
-  "dependencies": {
-    "@koa/cors": "2",
-    "@types/koa": "^2.0.46",
-    "@types/koa-bodyparser": "^5.0.1",
-    "@types/koa-favicon": "^2.0.19",
-    "@types/koa-mount": "^3.0.1",
-    "@types/koa-router": "^7.0.31",
-    "@types/koa-static": "^4.0.0",
-    "@types/module-alias": "^2.0.0",
-    "@types/socket.io": "^1.4.37",
-    "@types/spdy": "^3.4.4",
-    "@types/uuid": "^3.4.3",
-    "http-proxy": "^1.17.0",
-    "http-proxy-middleware": "^0.18.0",
-    "koa": "^2.5.2",
-    "koa-bodyparser": "^4.2.1",
-    "koa-favicon": "^2.0.1",
-    "koa-logger": "^3.2.0",
-    "koa-mount": "^3.0.0",
-    "koa-router": "^7.4.0",
-    "koa-send": "^5.0.0",
-    "koa-static": "^5.0.0",
-    "koa2-connect": "^1.0.2",
-    "module-alias": "^2.1.0",
-    "r2": "^2.0.1",
-    "request": "^2.88.0",
-    "socket.io": "^2.1.1",
-    "spdy": "^3.4.7",
-    "sudo-prompt": "^8.2.0",
-    "uuid": "^3.3.2"
-  },
-  "devDependencies": {
-    "semantic-release": "^15.9.12",
-    "travis-deploy-once": "^5.0.7"
-  }
+    "name": "combiners",
+    "version": "0.0.0-development",
+    "description": "",
+    "main": "index.js",
+    "repository": "https://github.com/abnerCrack/combiners.git",
+    "scripts": {
+        "commit": "git-cz",
+        "semantic-release": "semantic-release",
+        "travis-deploy-once": "travis-deploy-once"
+    },
+    "bin": {
+        "combiners": "./index.js"
+    },
+    "author": "crack <test@text.com> (http://yourblog.com/)",
+    "license": "MIT",
+    "_moduleAliases": {
+        "@root": ".",
+        "@client": "packages/client",
+        "@cert": "packages/cert",
+        "@server": "packages/server",
+        "@sockets": "packages/sockets"
+    },
+    "dependencies": {
+        "@koa/cors": "2",
+        "@semantic-release/changelog": "^3.0.0",
+        "@semantic-release/git": "^7.0.4",
+        "@types/koa": "^2.0.46",
+        "@types/koa-bodyparser": "^5.0.1",
+        "@types/koa-favicon": "^2.0.19",
+        "@types/koa-mount": "^3.0.1",
+        "@types/koa-router": "^7.0.31",
+        "@types/koa-static": "^4.0.0",
+        "@types/module-alias": "^2.0.0",
+        "@types/socket.io": "^1.4.37",
+        "@types/spdy": "^3.4.4",
+        "@types/uuid": "^3.4.3",
+        "cz-customizable": "^5.2.0",
+        "http-proxy": "^1.17.0",
+        "http-proxy-middleware": "^0.18.0",
+        "koa": "^2.5.2",
+        "koa-bodyparser": "^4.2.1",
+        "koa-favicon": "^2.0.1",
+        "koa-logger": "^3.2.0",
+        "koa-mount": "^3.0.0",
+        "koa-router": "^7.4.0",
+        "koa-send": "^5.0.0",
+        "koa-static": "^5.0.0",
+        "koa2-connect": "^1.0.2",
+        "module-alias": "^2.1.0",
+        "r2": "^2.0.1",
+        "request": "^2.88.0",
+        "socket.io": "^2.1.1",
+        "spdy": "^3.4.7",
+        "sudo-prompt": "^8.2.0",
+        "uuid": "^3.3.2"
+    },
+    "devDependencies": {
+        "semantic-release": "^15.9.12",
+        "travis-deploy-once": "^5.0.7"
+    },
+    "config": {
+        "commitizen": {
+            "path": "node_modules/cz-customizable"
+        }
+    },
+    "release": {
+        "analyzeCommits": {
+            "preset": "angular",
+            "releaseRules": [{
+                    "type": "feat 🌈  ",
+                    "scope": "README",
+                    "release": "patch"
+                },
+                {
+                    "type": "fix 🐞  ",
+                    "release": "patch"
+                },
+                {
+                    "type": "package  📦  ",
+                    "release": "patch"
+                },
+                {
+                    "type": "config  ⚙️  ",
+                    "release": "patch"
+                },
+                {
+                    "type": "refactor 🛠  ",
+                    "release": "patch"
+                },
+                {
+                    "type": "docs 📚  ",
+                    "release": "patch"
+                }
+            ],
+            "parserOpts": {
+                "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES", "BREAKING"]
+            }
+        },
+        "prepare": [{
+                "path": "@semantic-release/changelog",
+                "changelogFile": "changelog.md"
+            },
+            "@semantic-release/git"
+        ]
+    }
 }
