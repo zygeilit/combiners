@@ -67,7 +67,8 @@
     "release": {
         "analyzeCommits": {
             "preset": "angular",
-            "releaseRules": [{
+            "releaseRules": [
+                {
                     "type": "feat 🌈  ",
                     "scope": "README",
                     "release": "patch"
@@ -98,10 +99,15 @@
                 }
             ],
             "parserOpts": {
-                "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES", "BREAKING"]
+                "noteKeywords": [
+                    "BREAKING CHANGE",
+                    "BREAKING CHANGES",
+                    "BREAKING"
+                ]
             }
         },
-        "prepare": [{
+        "prepare": [
+            {
                 "path": "@semantic-release/changelog",
                 "changelogFile": "changelog.md"
             },
